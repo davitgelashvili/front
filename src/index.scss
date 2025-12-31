@@ -1,0 +1,32 @@
+@import 'bootstrap/dist/css/bootstrap-grid.min.css';
+:root {
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color-scheme: light dark;
+    color: #000;
+    background-color: #cecece;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.box {
+    width: 100%;
+    background: #ffdfdf;
+    overflow: auto;
+    border: 1px solid #d3c7c7;
+    background-color: #fff;
+    border-radius: 8px;
+}
