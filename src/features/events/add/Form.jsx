@@ -13,7 +13,7 @@ export default function Form({attr}) {
         },
         {
             title: 'აღწერა',
-            type: 'text',
+            type: 'textarea',
             name: 'description',
             value: attr.values.description,
             placeholder: 'შეიყვანეთ ინფორამცია',
@@ -53,7 +53,7 @@ export default function Form({attr}) {
         },
         {
             title: 'სტატუსი',
-            type: 'text',
+            type: 'select',
             name: 'status',
             value: attr.values.status,
             placeholder: 'შეიყვანეთ ინფორამცია',

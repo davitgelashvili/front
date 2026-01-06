@@ -28,8 +28,8 @@ export default function EventList() {
     return (
         <>
             <Link to={'add'}>add</Link>
-            <div className="box">
-                <div className="row container ">
+            <div className="container box">
+                <div className="row">
                     {data && data?.map(item => {
                     {console.log(item)}
                         return (
