@@ -18,19 +18,16 @@ export default function AddEvent() {
     
     const [values, setValues] = useState({
         title: "Tech Conference 2026",
+        slug: "tech-conference",
         description: "Annual tech conference in Tbilisi",
-        location: "Tbilisi, Georgia",
-        startAt: "2026-01-10T18:00:00Z",
-        endAt: "2026-01-10T22:00:00Z",
-        cover: "https://example.com/cover.jpg",
-        status: "published"
+        cover: "https://example.com/cover.jpg"
     })
 
     async function handleSubmit(e) {
         e.preventDefault()
         try {
             const respons = await request({
-                url: '/events',
+                url: '/hud',
                 method: 'POST',
                 data: values
             })

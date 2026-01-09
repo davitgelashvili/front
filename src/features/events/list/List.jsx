@@ -12,12 +12,12 @@ export default function EventList() {
         async function load() {
             try {
                 const respons = await request({
-                    url: `events/user/${"u_a0da43be3f3c0ba0de"}`,
+                    url: `/hud`,
                     method: 'GET'
                 })
 
                 if (respons.success) {
-                    setData(respons.events)
+                    setData(respons.items)
                 }
             } catch (error) {
                 console.error(error)

@@ -17,7 +17,7 @@ export default function Item({ data }) {
                 <img src={data?.cover} alt='cover' />
             </figure>
             <div className={`${styles.item__body}`}>
-                <Link to={`/events/${data.event_id}`}>{data?.title}</Link>
+                <Link to={`/events/${data.id}`}>{data?.title}</Link>
                 <p>დასაწყისი:<span>{dateFormat(data?.start_at)}</span></p>
                 <p>ლოკაცია:<span>{data?.location}</span></p>
             </div>

@@ -2,17 +2,19 @@ import { useParams } from 'react-router-dom'
 import useApi from '../../../http/useApi'
 import { useEffect, useState } from 'react'
 import TicketList from '../../tickets/list/List'
+import { useAuth } from '../../../context/AuthContext'
 
 export default function EventView() {
     const [data, setData] = useState(null)
     const { id } = useParams()
-    const { request } = useApi()
+    const { isToken } = useAuth()
+    const { request } = useApi(isToken)
 
     useEffect(() => {
         async function load() {
             try {
                 const respons = await request({
-                    url: `events/${id}`,
+                    url: `/hud/${id}`,
                     method: 'GET'
                 })
 
@@ -40,7 +42,7 @@ export default function EventView() {
             <div className='row'>
                 <div className='col-9'>
                     <div className='box'>
-                        <TicketList id={id}/>
+                        {/* <TicketList id={id}/> */}
                     </div>
                 </div>
                 <div className='col-3'>
