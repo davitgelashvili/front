@@ -12,7 +12,7 @@ const createDay = (data = {}) => ({
     tiers: data.tiers?.length ? data.tiers : [{ tier_no: 1, capacity: 0, price_cents: 0 }]
 });
 
-export default function AddTicket() {
+export default function AddEvent() {
     const { isToken } = useAuth();
     const { id } = useParams();
     const { request } = useApi(isToken);

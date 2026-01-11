@@ -4,13 +4,6 @@ import styles from './styles.module.scss'
 
 export default function Item({ data }) {
 
-    let date
-    function dateFormat(_date) {
-        date = new Date(_date)
-
-        return `${date.getDate() +'/'+ date.getMonth()+1}`
-    }
-
     return (
         <div className={`box ${styles.item}`}>
             <figure className={`${styles.item__cover}`}>
@@ -18,8 +11,6 @@ export default function Item({ data }) {
             </figure>
             <div className={`${styles.item__body}`}>
                 <Link to={`/events/${data.id}`}>{data?.title}</Link>
-                <p>დასაწყისი:<span>{dateFormat(data?.start_at)}</span></p>
-                <p>ლოკაცია:<span>{data?.location}</span></p>
             </div>
         </div>
     )

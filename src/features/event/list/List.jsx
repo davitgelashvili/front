@@ -1,23 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useApi from "../../../http/useApi";
+import { useAuth } from "../../../context/AuthContext";
 
-export default function TicketList({ id }) {
+export default function EventList({ idd }) {
     const [data, setData] = useState(null)
+    const { isToken } = useAuth()
     // const { id } = useParams()
-    const { request } = useApi()
+    const { request } = useApi(isToken)
 
     useEffect(() => {
+        console.log(isToken)
         async function load() {
             try {
                 const respons = await request({
-                    url: `events/${id}/tickets`,
+                    url: `/event`,
                     method: 'GET'
                 })
 
                 console.log(1, respons)
                 if (respons.success) {
-                    setData(respons.tickets)
+                    // setData(respons.events)
                     return respons
                 }
             } catch (error) {
@@ -25,7 +28,7 @@ export default function TicketList({ id }) {
             }
         }
         load()
-    }, [id])
+    }, [isToken])
     return (
         <>
             <Link to={'add'}>add</Link>
@@ -40,7 +43,7 @@ export default function TicketList({ id }) {
                                     <p>გაყიდვის დრო: {item.date}</p>
                                     {item?.tiers.map((_it, key) => {
                                         return (
-                                            <div className="box" style={_it.is_active ? {border: '1px solid green'} : null}>
+                                            <div className="box" style={_it.is_active ? { border: '1px solid green' } : null}>
                                                 <h4>კალათა: {key + 1}</h4>
                                                 <p>სულ: {_it.capacity}</p>
                                                 <p>გაყიდული: {_it.sold}</p>

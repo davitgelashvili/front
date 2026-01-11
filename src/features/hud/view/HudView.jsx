@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom'
 import useApi from '../../../http/useApi'
 import { useEffect, useState } from 'react'
-import TicketList from '../../tickets/list/List'
 import { useAuth } from '../../../context/AuthContext'
+import EventList from '../../event/list/List'
 
-export default function EventView() {
+export default function HudView() {
     const [data, setData] = useState(null)
     const { id } = useParams()
     const { isToken } = useAuth()
@@ -20,7 +20,7 @@ export default function EventView() {
 
                 console.log(respons)
                 if (respons.success) {
-                    setData(respons.event)
+                    setData(respons.hud)
                     return respons
                 }
             } catch (error) {
@@ -42,7 +42,7 @@ export default function EventView() {
             <div className='row'>
                 <div className='col-9'>
                     <div className='box'>
-                        {/* <TicketList id={id}/> */}
+                        <EventList idd={id}/>
                     </div>
                 </div>
                 <div className='col-3'>
@@ -53,8 +53,7 @@ export default function EventView() {
                         <div>
                             <h1>{data?.title}</h1>
                             <p>{data?.description}</p>
-                            <p>დასაწყისი:<span>{dateFormat(data?.start_at)}</span></p>
-                            <p>ლოკაცია:<span>{data?.location}</span></p>
+                            <p>ლინკი:<span>{data?.slug}</span></p>
                         </div>
                     </div>
                 </div>

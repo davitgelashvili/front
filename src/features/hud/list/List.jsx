@@ -4,7 +4,7 @@ import useApi from "../../../http/useApi";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 
-export default function EventList() {
+export default function HudList() {
     const [data, setData] = useState(null)
     const { isToken } = useAuth()
     const { request } = useApi(isToken)

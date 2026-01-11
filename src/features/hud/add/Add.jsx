@@ -3,7 +3,7 @@ import Form from './Form'
 import useApi from '../../../http/useApi'
 import { useAuth } from '../../../context/AuthContext'
 
-export default function AddEvent() {
+export default function AddHud() {
     const { isToken } = useAuth()
     const { request } = useApi(isToken)
     // const [values, setValues] = useState({

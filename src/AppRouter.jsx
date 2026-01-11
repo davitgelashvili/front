@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "./components/layout/Layout";
 import { DashboardPage } from "./pages/DashboardPage";
-import { EventPage } from "./pages/EventPage";
-import AddEventPage from "./pages/AddEventPage";
-import EventDetailPage from "./pages/EventDetailPage";
-import AddTicketPage from "./pages/AddTicketPage";
+import { HudPage } from "./pages/HudPage";
+import AddEventPage from "./pages/AddHudPage";
+import AddTicketPage from "./pages/AddEventPage";
+import HudDetailPage from "./pages/HudDetailPage";
 
 export default function AppRouter() {
     return (
@@ -12,10 +12,10 @@ export default function AppRouter() {
         <Routes>
             <Route path='/*' element={<Layout />}>
                 <Route index element={<DashboardPage />} />
-                <Route path="events" element={<EventPage />} />
-                <Route path="events/:id" element={<EventDetailPage />} />
+                <Route path="events" element={<HudPage />} />
+                <Route path="events/:id" element={<HudDetailPage />} />
                 <Route path="events/add" element={<AddEventPage />} />
-                <Route path="events/:id/add" element={<AddTicketPage />} />
+                <Route path="events/:id/add" element={<AddEventPage />} />
             </Route>
         </Routes>
         </>
