@@ -3,6 +3,7 @@ import useApi from '../../../http/useApi'
 import { useEffect, useState } from 'react'
 import { useAuth } from '../../../context/AuthContext'
 import EventList from '../../event/list/List'
+import DateFormat from '../../../components/DateFormat/DateFormat'
 
 export default function HudView() {
     const [data, setData] = useState(null)
@@ -30,13 +31,6 @@ export default function HudView() {
         load()
     }, [id])
 
-    let date
-    function dateFormat(_date) {
-        date = new Date(_date)
-
-        return `${date.getDate() + '/' + date.getMonth() + 1}`
-    }
-
     return (
         <div className='container'>
             <div className='row'>
@@ -47,13 +41,14 @@ export default function HudView() {
                 </div>
                 <div className='col-3'>
                     <div className='box'>
-                        <figure>
+                        <figure style={{margin: 0}}>
                             <img src={data?.cover} alt='cover' style={{ width: '100%' }} />
                         </figure>
                         <div>
-                            <h1>{data?.title}</h1>
+                            <h4>{data?.title}</h4>
                             <p>{data?.description}</p>
                             <p>ლინკი:<span>{data?.slug}</span></p>
+                            <p>{DateFormat(data?.start_datetime).getDate()} - {DateFormat(data?.end_datetime).getDate()}</p>
                         </div>
                     </div>
                 </div>

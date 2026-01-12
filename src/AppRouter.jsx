@@ -2,9 +2,9 @@ import { Route, Routes } from "react-router-dom";
 import { Layout } from "./components/layout/Layout";
 import { DashboardPage } from "./pages/DashboardPage";
 import { HudPage } from "./pages/HudPage";
-import AddEventPage from "./pages/AddHudPage";
-import AddTicketPage from "./pages/AddEventPage";
 import HudDetailPage from "./pages/HudDetailPage";
+import AddHudPage from "./pages/AddHudPage";
+import AddEventPage from "./pages/AddEventPage";
 
 export default function AppRouter() {
     return (
@@ -14,7 +14,7 @@ export default function AppRouter() {
                 <Route index element={<DashboardPage />} />
                 <Route path="events" element={<HudPage />} />
                 <Route path="events/:id" element={<HudDetailPage />} />
-                <Route path="events/add" element={<AddEventPage />} />
+                <Route path="events/add" element={<AddHudPage />} />
                 <Route path="events/:id/add" element={<AddEventPage />} />
             </Route>
         </Routes>

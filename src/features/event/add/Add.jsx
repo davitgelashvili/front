@@ -13,48 +13,33 @@ const createDay = (data = {}) => ({
 });
 
 export default function AddEvent() {
-    const { isToken } = useAuth();
     const { id } = useParams();
-    const { request } = useApi(isToken);
-    const [values, setValues] = useState([]);
-
-    function addForm() {
-        setValues(prev => [...prev, createDay()]);
-    }
-
-    function addTier(dayIndex) {
-        setValues(prev => prev.map((day, index) => {
-            if (index !== dayIndex) return day;
-
-            const nexttier_no = (day.tiers?.length ?? 0) + 1;
-            return {
-                ...day,
-                tiers: [...(day.tiers || []), { tier_no: nexttier_no, capacity: 0, price_cents: 0 }]
-            };
-        }));
-    }
+    const { isToken } = useAuth()
+    const { request } = useApi(isToken)
+    const [values, setValues] = useState({
+        hud_id: id,
+        title: '',
+        description: '',
+        start_datetime: '',
+        end_datetime: '',
+        min_price: '',
+        max_price: ''
+    })
 
     async function handleSubmit(e) {
-        e.preventDefault();
+        e.preventDefault()
         try {
-            const payload = values.map(day => ({
-                ...day,
-                date: day.date ? day.date.split('T')[0] : "" // მხოლოდ YYYY-MM-DD
-            }));
-
-            const response = await request({
-                url: `/events/${id}/tickets/setup`,
+            const respons = await request({
+                url: '/event',
                 method: 'POST',
-                data: payload
-            });
+                data: values
+            })
 
-            if (response.success) {
-                console.log('Tickets created:', response);
-                alert('Tickets created successfully!');
-            }
+            console.log(respons)
+            // if (respons.success) {
+            // }
         } catch (error) {
             console.error('CREATE EVENT ERROR:', error);
-            alert(error.message);
         }
     }
 
@@ -63,12 +48,12 @@ export default function AddEvent() {
         async function load() {
             try {
                 const response = await request({
-                    url: `/events/${id}/tickets`,
+                    url: `/hud/${id}`,
                     method: 'GET'
                 });
 
-                if (response.success && response.tickets?.length) {
-                    setValues(response.tickets.map(ticket => createDay(ticket)));
+                if (response.success) {
+                    setValues(prev => ({...prev, title: response?.hud?.title, description: response?.hud?.description}))
                 }
             } catch (error) {
                 console.error('LOAD TICKETS ERROR:', error);
@@ -76,12 +61,13 @@ export default function AddEvent() {
             }
         }
         load();
-    }, [id]);
+    }, [id, request]);
 
     return (
         <div>
-            <h1>ბილეთის დამატება</h1>
-            <Form attr={{ values, setValues, handleSubmit, addForm, addTier }} />
+            <h1>ივენთის დამატება</h1>
+            <button onClick={() => console.log(values, hudData)}>test</button>
+            <Form attr={{ values, setValues, handleSubmit }} />
         </div>
     );
 }

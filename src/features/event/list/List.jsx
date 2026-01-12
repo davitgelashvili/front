@@ -2,11 +2,12 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useApi from "../../../http/useApi";
 import { useAuth } from "../../../context/AuthContext";
+import DateFormat from "../../../components/DateFormat/DateFormat";
 
 export default function EventList({ idd }) {
     const [data, setData] = useState(null)
     const { isToken } = useAuth()
-    // const { id } = useParams()
+    const { id } = useParams()
     const { request } = useApi(isToken)
 
     useEffect(() => {
@@ -20,7 +21,7 @@ export default function EventList({ idd }) {
 
                 console.log(1, respons)
                 if (respons.success) {
-                    // setData(respons.events)
+                    setData(respons.events)
                     return respons
                 }
             } catch (error) {
@@ -33,31 +34,40 @@ export default function EventList({ idd }) {
         <>
             <Link to={'add'}>add</Link>
             <div className="container">
-                <div className="row">
-                    {data && data?.map((item, key) => {
-                        { console.log(item) }
-                        return (
-                            <div className="col-4" key={item.event_id}>
-                                <div className="box">
-                                    <h3>{item.name ? item.name : `დღე ${key + 1}`}</h3>
-                                    <p>გაყიდვის დრო: {item.date}</p>
-                                    {item?.tiers.map((_it, key) => {
-                                        return (
-                                            <div className="box" style={_it.is_active ? { border: '1px solid green' } : null}>
-                                                <h4>კალათა: {key + 1}</h4>
-                                                <p>სულ: {_it.capacity}</p>
-                                                <p>გაყიდული: {_it.sold}</p>
-                                                <p>დარჩა: {_it.capacity - _it.sold}</p>
-                                                <p>ფასი: {_it.price_cents / 100} ₾.</p>
-                                                <p>კალატის ნომერი: {_it.tier_no}</p>
-                                            </div>
-                                        )
-                                    })}
+                {data && data?.map((item, index) => {
+                    return (
+                        <div className="box" key={item.id}>
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-3">
+                                        <div style={{ textAlign: 'center' }}>
+                                            <h2>{index + 1}</h2>
+                                            <p>დღე</p>
+                                        </div>
+                                    </div>
+                                    <div className="col-3">
+                                        <div style={{ textAlign: 'center' }}>
+                                            <h2>{DateFormat(item.start_datetime).getDate()}</h2>
+                                            <p>{DateFormat(item.start_datetime).getMonth()}</p>
+                                        </div>
+                                    </div>
+                                    <div className="col-3">
+                                        <div style={{ textAlign: 'center' }}>
+                                            <h2>{item.min_price}</h2>
+                                            <p>მინ. ფასი</p>
+                                        </div>
+                                    </div>
+                                    <div className="col-3">
+                                        <div style={{ textAlign: 'center' }}>
+                                            <h2>{item.max_price}</h2>
+                                            <p>მაქს. ფასი</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        )
-                    })}
-                </div>
+                        </div>
+                    )
+                })}
             </div>
         </>
     )

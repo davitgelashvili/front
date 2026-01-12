@@ -6,16 +6,6 @@ import { useAuth } from '../../../context/AuthContext'
 export default function AddHud() {
     const { isToken } = useAuth()
     const { request } = useApi(isToken)
-    // const [values, setValues] = useState({
-    //     title: 'ჩემი პირველი ღონისძიება',
-    //     description: 'ეს არის მოკლე აღწერა ღონისძიების შესახებ',
-    //     location: 'თბილისი, საქართველო',
-    //     startAt: '2025-12-31T12:00:00.000Z',
-    //     endAt: '2026-01-01T12:00:00.000Z',
-    //     cover: 'https://example.com/cover-image.jpg',
-    //     status: 'published'
-    // })
-    
     const [values, setValues] = useState({
         title: "Tech Conference 2026",
         slug: "tech-conference",
@@ -43,7 +33,7 @@ export default function AddHud() {
 
     return (
         <div>
-            <h1>დამატება</h1>
+            <h1>ჰუდის შექმნა</h1>
             <Form attr={{ values, setValues, handleSubmit }} />
         </div>
     )
