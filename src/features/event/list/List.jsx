@@ -15,7 +15,7 @@ export default function EventList({ idd }) {
         async function load() {
             try {
                 const respons = await request({
-                    url: `/event`,
+                    url: `/hud/${id}/event`,
                     method: 'GET'
                 })
 
