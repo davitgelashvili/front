@@ -1,23 +1,29 @@
-import React, { useState } from 'react'
-import Form from './Form'
-import useApi from '../../../http/useApi'
-import { useAuth } from '../../../context/AuthContext'
+import React, { useEffect, useState } from 'react';
+import Form from './form';
+import { useAuth } from '../../../context/AuthContext';
+import useApi from '../../../http/useApi';
+import { useParams } from 'react-router-dom';
 
-export default function AddHud() {
+export default function AddBatch() {
+    const { event_id } = useParams();
     const { isToken } = useAuth()
     const { request } = useApi(isToken)
     const [values, setValues] = useState({
-        title: "Tech Conference 2026",
-        slug: "tech-conference",
-        description: "Annual tech conference in Tbilisi",
-        cover: "https://example.com/cover.jpg"
+        event_id: event_id,
+        name: '',
+        price: '',
+        capacity: ''
     })
+
+    useEffect(()=>{
+        setValues(prev => ({...prev, event_id: event_id}))
+    }, [event_id])
 
     async function handleSubmit(e) {
         e.preventDefault()
         try {
             const respons = await request({
-                url: '/hud',
+                url: '/batch',
                 method: 'POST',
                 data: values
             })
@@ -27,14 +33,13 @@ export default function AddHud() {
             // }
         } catch (error) {
             console.error('CREATE EVENT ERROR:', error);
-            return res.status(500).json({ success: false, message: error.message });
         }
     }
 
     return (
-        <div className='container'>
-            <h1>ჰუდის შექმნა</h1>
+        <div>
+            <h1>კალათის დამატება</h1>
             <Form attr={{ values, setValues, handleSubmit }} />
         </div>
-    )
+    );
 }

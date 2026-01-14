@@ -10,7 +10,7 @@ export default function Item({ data }) {
                 <img src={data?.cover} alt='cover' />
             </figure>
             <div className={`${styles.item__body}`}>
-                <Link to={`/events/${data.id}`}>{data?.title}</Link>
+                <Link to={`${data.id}`}>{data?.title}</Link>
             </div>
         </div>
     )

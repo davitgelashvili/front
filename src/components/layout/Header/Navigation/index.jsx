@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const Menu = () => {
+export const Navigation = () => {
     return (
         <ul>
             <li>
                 <Link to={'/'}>მთავარი</Link>
             </li>
             <li>
-                <Link to={'/events'}>ივენთები</Link>
+                <Link to={'/hud'}>ჰუდები</Link>
             </li>
         </ul>
     )

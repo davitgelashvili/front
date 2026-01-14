@@ -13,11 +13,11 @@ const createDay = (data = {}) => ({
 });
 
 export default function AddEvent() {
-    const { id } = useParams();
+    const { hud_id } = useParams();
     const { isToken } = useAuth()
     const { request } = useApi(isToken)
     const [values, setValues] = useState({
-        hud_id: id,
+        hud_id: hud_id,
         title: '',
         description: '',
         start_datetime: '',
@@ -48,7 +48,7 @@ export default function AddEvent() {
         async function load() {
             try {
                 const response = await request({
-                    url: `/hud/${id}`,
+                    url: `/hud/${hud_id}`,
                     method: 'GET'
                 });
 
@@ -61,12 +61,11 @@ export default function AddEvent() {
             }
         }
         load();
-    }, [id, request]);
+    }, [hud_id, request]);
 
     return (
         <div>
             <h1>ივენთის დამატება</h1>
-            <button onClick={() => console.log(values, hudData)}>test</button>
             <Form attr={{ values, setValues, handleSubmit }} />
         </div>
     );

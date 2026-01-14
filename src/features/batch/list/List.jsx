@@ -4,21 +4,24 @@ import useApi from "../../../http/useApi";
 import { useAuth } from "../../../context/AuthContext";
 import { Item } from "./Item";
 
-export default function EventList() {
+export default function BatchList() {
     const [data, setData] = useState(null)
     const { isToken } = useAuth()
-    const { hud_id } = useParams()
+    const { event_id } = useParams()
     const { request } = useApi(isToken)
 
     useEffect(() => {
+        console.log(isToken)
         async function load() {
             try {
                 const respons = await request({
-                    url: `/hud/${hud_id}/event`,
+                    url: `/event/${event_id}/batch`,
                     method: 'GET'
                 })
+
+                console.log(1, respons)
                 if (respons.success) {
-                    setData(respons.events)
+                    setData(respons.batches)
                     return respons
                 }
             } catch (error) {
@@ -26,7 +29,7 @@ export default function EventList() {
             }
         }
         load()
-    }, [isToken])
+    }, [isToken, event_id])
     return (
         <>
             <div className="container">

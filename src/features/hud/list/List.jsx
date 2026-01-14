@@ -26,20 +26,17 @@ export default function HudList() {
         load()
     }, [isToken])
     return (
-        <>
-            <Link to={'add'}>add</Link>
-            <div className="container box">
-                <div className="row">
-                    {data && data?.map(item => {
-                    {console.log(item)}
-                        return (
-                            <div className="col-4" key={item.event_id}>
-                                <Item data={item} />
-                            </div>
-                        )
-                    })}
-                </div>
+        <div className="container">
+            <div className="row">
+                {data && data?.map(item => {
+                    { console.log(item) }
+                    return (
+                        <div className="col-4" key={item.event_id}>
+                            <Item data={item} />
+                        </div>
+                    )
+                })}
             </div>
-        </>
+        </div>
     )
 }

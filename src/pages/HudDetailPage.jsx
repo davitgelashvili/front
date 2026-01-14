@@ -1,8 +1,11 @@
-import React from 'react'
-import HudView from '../features/hud/view/HudView'
+import AddButton from '../components/ui/AddButton'
+import EventList from '../features/event/list/List'
 
 export default function HudDetailPage() {
     return (
-        <HudView />
+        <>
+            <EventList />
+            <AddButton url={'add'} text={'Add Day'} />
+        </>
     )
 }
