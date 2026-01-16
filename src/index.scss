@@ -1,4 +1,5 @@
 @import 'bootstrap/dist/css/bootstrap-grid.min.css';
+
 :root {
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
@@ -6,12 +7,18 @@
 
     color-scheme: light dark;
     color: #000;
-    background-color: #cecece;
+    background-color: #f6f7f8;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    --borderColor: #e5e7eb;
+    --textColor: #96a2ad;
+    --lightTextColor: #94a3b8;
+    --blue: #137fec;
+    --lightBlue: #e7f2fd;
 }
 
 * {
@@ -26,7 +33,8 @@ body {
     width: 100%;
     background: #ffdfdf;
     overflow: auto;
-    border: 1px solid #d3c7c7;
+    border: 1px solid var(--borderColor);
     background-color: #fff;
     border-radius: 8px;
+    box-shadow: 0px 2px 9px -8px #000;
 }

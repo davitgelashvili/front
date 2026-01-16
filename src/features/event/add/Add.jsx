@@ -65,7 +65,7 @@ export default function AddEvent() {
 
     return (
         <div>
-            <h1>ივენთის დამატება</h1>
+            <h1>დღის დამატება</h1>
             <Form attr={{ values, setValues, handleSubmit }} />
         </div>
     );

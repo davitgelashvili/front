@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import InputText from '../../../components/ui/InputText'
 import useApi from '../../../http/useApi'
 import { useAuth } from '../../../context/AuthContext'

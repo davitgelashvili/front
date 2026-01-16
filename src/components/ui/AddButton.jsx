@@ -1,8 +1,8 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
+import styles from './styles.module.scss'
 
 export default function AddButton({ text, url }) {
     return (
-        <Link to={url}>{text}</Link>
+        <Link className={`${styles.addbutton} box`} to={url}>{text}</Link>
     )
 }

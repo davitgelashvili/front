@@ -8,6 +8,7 @@ import AddEventPage from "./pages/AddEventPage";
 import { BatchPage } from "./pages/BatchPage";
 import { Header } from "./components/layout/Header";
 import { AddBatchPage } from "./pages/AddBatchPage";
+import EditHudPage from "./pages/EditHudPage";
 
 export default function AppRouter() {
     return (
@@ -17,6 +18,7 @@ export default function AppRouter() {
                 <Route index element={<DashboardPage />} />
                 <Route path="hud" element={<HudPage />} />
                 <Route path="hud/add" element={<AddHudPage />} />
+                <Route path="hud/:hud_id/edit" element={<EditHudPage />} />
                 <Route path='/*' element={<Layout />}>
                     <Route path="hud/:hud_id" element={<HudDetailPage />} />
                     <Route path="hud/:hud_id/add" element={<AddEventPage />} />

@@ -8,13 +8,13 @@ export const Layout = () => {
             <div className={styles.content}>
                 <div className={styles.content__in}>
                     <div className="row">
-                        <div className="col-9">
-                            <Outlet />
-                        </div>
                         <div className="col-3">
                             <div className="box">
                                 <HudCard />
                             </div>
+                        </div>
+                        <div className="col-9">
+                            <Outlet />
                         </div>
                     </div>
                 </div>

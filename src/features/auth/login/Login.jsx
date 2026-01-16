@@ -1,11 +1,13 @@
-import React from 'react'
+import styles from './styles.module.scss'
 import Form from './Form'
 
 export default function Login() {
     return (
-        <div>
-            <h1>ავტორიზაცია</h1>
-            <Form />
+        <div className={styles.auth}>
+            <div className={`${styles.login} box`}>
+                <h1>ავტორიზაცია</h1>
+                <Form />
+            </div>
         </div>
     )
 }

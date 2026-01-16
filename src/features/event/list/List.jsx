@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useApi from "../../../http/useApi";
 import { useAuth } from "../../../context/AuthContext";
 import { Item } from "./Item";
+import AddButton from "../../../components/ui/AddButton";
 
 export default function EventList() {
     const [data, setData] = useState(null)
@@ -29,13 +30,14 @@ export default function EventList() {
     }, [isToken])
     return (
         <>
-            <div className="container">
+            <div>
                 {data && data?.map((item, index) => {
                     return (
                         <Item item={item} index={index} key={item.id} />
                     )
                 })}
             </div>
+            <AddButton url={'add'} text={'Add Day'} />
         </>
     )
 }
