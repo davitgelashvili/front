@@ -1,9 +1,10 @@
-import { Link, useParams } from "react-router-dom";
+import styles from './styles.module.scss'
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useApi from "../../../http/useApi";
 import { useAuth } from "../../../context/AuthContext";
 import { Item } from "./Item";
-import AddButton from "../../../components/ui/AddButton";
+import CustomButton from "../../../components/ui/CustomButton";
 
 export default function EventList() {
     const [data, setData] = useState(null)
@@ -37,7 +38,9 @@ export default function EventList() {
                     )
                 })}
             </div>
-            <AddButton url={'add'} text={'Add Day'} />
+            <CustomButton url={'add'} style={'light'}>
+                <span className={styles['list--addbtn']}>Add Day</span>
+            </CustomButton>
         </>
     )
 }

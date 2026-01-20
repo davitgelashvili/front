@@ -32,15 +32,8 @@
         border-top: 1px solid var(--borderColor);
         padding-top: rem(16px);
 
-        button {
-            background-color: var(--blue);
-            border: none;
-            color: #fff;
-            display: block;
-            width: 100%;
+        &--edit {
             padding: rem(16px) rem(8px);
-            border-radius: 8px;
-            cursor: pointer;
         }
 
         button:disabled{

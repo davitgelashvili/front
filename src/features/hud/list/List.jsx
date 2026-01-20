@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import styles from './styles.module.scss'
 import Item from "./Item";
 import useApi from "../../../http/useApi";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
-import AddButton from "../../../components/ui/AddButton";
+import CustomButton from "../../../components/ui/CustomButton";
 
 export default function HudList() {
     const [data, setData] = useState(null)
@@ -39,7 +39,9 @@ export default function HudList() {
                     )
                 })}
             </div>
-            <AddButton text={'Add Hud'} url={'add'} />
+            <CustomButton url={'add'} style={'light'}>
+                <span className={styles['list--addbtn']}>Add Hud</span>
+            </CustomButton>
         </div>
     )
 }

@@ -13,15 +13,34 @@
     }
 }
 
-.addbutton {
-    width: 100%;
+.custombutton {
+    // width: 100%;
     display: block;
     border-radius: 12px;
     text-decoration: none;
-    border-style: dashed;
-    padding: 32px;
     text-align: center;
-    background-color: var(--lightBlue);
-    margin-top: 20px;
-    color: var(--blue);
+
+    & > span {
+        display: block;
+    }
+
+    &--light {
+        color: var(--blue);
+        background-color: var(--lightBlue);
+
+        &:hover {
+            color: #fff;
+            background-color: var(--blue);
+        }
+    }
+
+    &--dark {
+        color: #fff;
+        background-color: var(--blue);
+
+        &:hover {
+            color: var(--blue);
+            background-color: var(--lightBlue);
+        }
+    }
 }

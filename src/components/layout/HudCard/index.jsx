@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useAuth } from '../../../context/AuthContext'
 import useApi from '../../../http/useApi'
 import styles from './styles.module.scss'
+import CustomButton from '../../ui/CustomButton'
 
 export const HudCard = () => {
     const [data, setData] = useState(null)
@@ -43,7 +44,9 @@ export const HudCard = () => {
                     <p>{DateFormat(data?.start_datetime).getDate()} - {DateFormat(data?.end_datetime).getDate()}</p>
                 </div>
                 <div className={`${styles['hudcard__footer']}`}>
-                    <Link to={`/hud/${data?.id}/edit`} disabled={true}>edit hud</Link>
+                    <CustomButton url={`/hud/${data?.id}/edit`} text={'edit hud'} style={'dark'}>
+                        <span className={`${styles['hudcard__footer--edit']}`}>edit hud</span>
+                    </CustomButton>
                 </div>
             </div>
         </div>

@@ -37,7 +37,7 @@ export default function AddBatch() {
     }
 
     return (
-        <div>
+        <div className='container-fluid box'>
             <h1>კალათის დამატება</h1>
             <Form attr={{ values, setValues, handleSubmit }} />
         </div>

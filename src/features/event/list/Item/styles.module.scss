@@ -39,6 +39,15 @@
             font-weight: 400;
         }
     }
+
+    &__btns {
+        &--in {
+            margin-left: 20px;
+        }
+        &--btn {
+            padding: 8px 14px;
+        }
+    }
 }
 
 .body {

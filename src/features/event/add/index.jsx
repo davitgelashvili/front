@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import Form from './form';
-import { useAuth } from '../../../context/AuthContext';
-import useApi from '../../../http/useApi';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react'
+import { useAuth } from '../../../context/AuthContext'
+import useApi from '../../../http/useApi'
+import EventForm from '../EventForm/EventForm'
+import { useParams } from 'react-router-dom'
 
-const createDay = (data = {}) => ({
-    ...data,
-    type: "DAY",
-    name: data.name || "",
-    date: data.date || "",
-    tiers: data.tiers?.length ? data.tiers : [{ tier_no: 1, capacity: 0, price_cents: 0 }]
-});
-
-export default function AddEvent() {
+export const AddEvent = () => {
     const { hud_id } = useParams();
     const { isToken } = useAuth()
     const { request } = useApi(isToken)
@@ -35,14 +27,13 @@ export default function AddEvent() {
                 data: values
             })
 
-            console.log(respons)
             // if (respons.success) {
             // }
         } catch (error) {
             console.error('CREATE EVENT ERROR:', error);
+            return res.status(500).json({ success: false, message: error.message });
         }
     }
-
 
     useEffect(() => {
         async function load() {
@@ -53,7 +44,7 @@ export default function AddEvent() {
                 });
 
                 if (response.success) {
-                    setValues(prev => ({...prev, title: response?.hud?.title, description: response?.hud?.description}))
+                    setValues(prev => ({ ...prev, title: response?.hud?.title, description: response?.hud?.description }))
                 }
             } catch (error) {
                 console.error('LOAD TICKETS ERROR:', error);
@@ -64,9 +55,6 @@ export default function AddEvent() {
     }, [hud_id, request]);
 
     return (
-        <div>
-            <h1>დღის დამატება</h1>
-            <Form attr={{ values, setValues, handleSubmit }} />
-        </div>
-    );
+        <EventForm attr={{ values, setValues, handleSubmit, title: 'ჰუდის შექმნა' }} />
+    )
 }

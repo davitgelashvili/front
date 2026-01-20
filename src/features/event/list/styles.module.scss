@@ -1,1 +1,7 @@
 @use './../../../functions' as *;
+
+.list {
+    &--addbtn {
+        padding: 20px;
+    }
+}

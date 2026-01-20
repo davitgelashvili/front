@@ -1,5 +1,4 @@
-import React from 'react'
-import AddEvent from '../features/event/add/Add'
+import { AddEvent } from "../features/event/add";
 
 export default function AddEventPage() {
     return (

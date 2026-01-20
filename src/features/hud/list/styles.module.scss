@@ -1,5 +1,11 @@
 @use "./../../../functions" as *;
 
+.list {
+    &--addbtn {
+        padding: 20px;
+    }
+}
+
 .item {
     margin: 12px 0;
     border-radius: 8px;

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import DateFormat from '../../../../components/DateFormat/DateFormat'
 import styles from './styles.module.scss'
+import CustomButton from '../../../../components/ui/CustomButton'
 
 export const Head = ({ item }) => {
     return (
@@ -15,9 +16,17 @@ export const Head = ({ item }) => {
                     {/* <p>{item?.min_price} - {item?.max_price} ლარი</p> */}
                 </h1>
             </div>
-            <div>
-                <Link to={item?.id}>Manage Ticket</Link>
-                <Link to={'/'}>edit</Link>
+            <div className={`${styles['head__btns']} d-flex align-items-center`}>
+                <div className={`${styles['head__btns--in']}`}>
+                    <CustomButton url={item?.id} style={'dark'}>
+                        <span className={`${styles['head__btns--btn']}`}>Manage Ticket</span>
+                    </CustomButton>
+                </div>
+                <div className={`${styles['head__btns--in']}`}>
+                    <CustomButton url={item?.id} style={'light'}>
+                        <span className={`${styles['head__btns--btn']}`}>Edit</span>
+                    </CustomButton>
+                </div>
             </div>
         </div>
     )

@@ -1,9 +1,10 @@
-import { Link, useParams } from "react-router-dom";
+import styles from './styles.module.scss'
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useApi from "../../../http/useApi";
 import { useAuth } from "../../../context/AuthContext";
 import { Item } from "./Item";
-import AddButton from "../../../components/ui/AddButton";
+import CustomButton from "../../../components/ui/CustomButton";
 
 export default function BatchList() {
     const [data, setData] = useState(null)
@@ -40,7 +41,9 @@ export default function BatchList() {
                     )
                 })}
             </div>
-            <AddButton text={'Add Batch'} url={'add'} />
+            <CustomButton url={'add'} style={'light'}>
+                <span className={styles['list--addbtn']}>Add Batch</span>
+            </CustomButton>
         </>
     )
 }
