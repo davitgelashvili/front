@@ -17,7 +17,7 @@ export default function BatchList() {
         async function load() {
             try {
                 const respons = await request({
-                    url: `/event/${event_id}/batch`,
+                    url: `/v1/event/${event_id}/batch`,
                     method: 'GET'
                 })
 

@@ -1,20 +1,19 @@
-import { Link } from "react-router-dom";
-import Item from "./Item";
-import useApi from "../../../http/useApi";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../../context/AuthContext";
-import CustomButton from "../../../components/ui/CustomButton";
+import Item from "../hud/list/Item";
+import CustomButton from "../../components/ui/CustomButton";
+import useApi from "../../http/useApi";
+import { useAuth } from "../../context/AuthContext";
 
-export default function HudList() {
+export default function DashboardList() {
     const [data, setData] = useState(null)
     const { isToken } = useAuth()
-    const { request } = useApi(isToken)
-    
+    const { request } = useApi()
+
     useEffect(() => {
         async function load() {
             try {
                 const respons = await request({
-                    url: `/hud`,
+                    url: `/client/hud`,
                     method: 'GET'
                 })
 
@@ -39,7 +38,6 @@ export default function HudList() {
                     )
                 })}
             </div>
-            <CustomButton text={'Add Hud'} url={'add'} />
         </div>
     )
 }

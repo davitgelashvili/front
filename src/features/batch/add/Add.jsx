@@ -23,7 +23,7 @@ export default function AddBatch() {
         e.preventDefault()
         try {
             const respons = await request({
-                url: '/batch',
+                url: '/v1/batch',
                 method: 'POST',
                 data: values
             })

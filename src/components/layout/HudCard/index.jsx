@@ -16,7 +16,7 @@ export const HudCard = () => {
         async function load() {
             try {
                 const respons = await request({
-                    url: `/hud/${hud_id}`,
+                    url: `/v1/hud/${hud_id}`,
                     method: 'GET'
                 })
 

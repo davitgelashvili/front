@@ -17,7 +17,7 @@ export const AddHud = () => {
         e.preventDefault()
         try {
             const respons = await request({
-                url: '/hud',
+                url: '/v1/hud',
                 method: 'POST',
                 data: values
             })

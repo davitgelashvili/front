@@ -14,7 +14,7 @@ export default function HudList() {
         async function load() {
             try {
                 const respons = await request({
-                    url: `/hud`,
+                    url: `/v1/hud`,
                     method: 'GET'
                 })
 

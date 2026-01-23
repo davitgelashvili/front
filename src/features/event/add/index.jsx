@@ -22,7 +22,7 @@ export const AddEvent = () => {
         e.preventDefault()
         try {
             const respons = await request({
-                url: '/event',
+                url: '/v1/event',
                 method: 'POST',
                 data: values
             })
@@ -39,7 +39,7 @@ export const AddEvent = () => {
         async function load() {
             try {
                 const response = await request({
-                    url: `/hud/${hud_id}`,
+                    url: `/v1/hud/${hud_id}`,
                     method: 'GET'
                 });
 
