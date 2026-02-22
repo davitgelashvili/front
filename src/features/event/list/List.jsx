@@ -16,7 +16,7 @@ export default function EventList() {
         async function load() {
             try {
                 const respons = await request({
-                    url: `/v1/hud/${hud_id}/event`,
+                    url: `/dashboard/hud/${hud_id}/event`,
                     method: 'GET'
                 })
                 if (respons.success) {

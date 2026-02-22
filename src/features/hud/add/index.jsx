@@ -17,13 +17,20 @@ export const AddHud = () => {
         e.preventDefault()
         try {
             const respons = await request({
-                url: '/v1/hud',
+                url: '/dashboard/hud',
                 method: 'POST',
                 data: values
             })
 
-            // if (respons.success) {
-            // }
+            if (respons.success) {
+                alert('success')
+                setValues({
+                    title: "",
+                    slug: "",
+                    description: "",
+                    cover: "https://example.com/cover.jpg"
+                })
+            }
         } catch (error) {
             console.error('CREATE EVENT ERROR:', error);
             return res.status(500).json({ success: false, message: error.message });
@@ -31,6 +38,6 @@ export const AddHud = () => {
     }
 
     return (
-        <HudForm attr={{values, setValues, handleSubmit, title: 'ჰუდის შექმნა'}} />
+        <HudForm attr={{ values, setValues, handleSubmit, title: 'ჰუდის შექმნა' }} />
     )
 }

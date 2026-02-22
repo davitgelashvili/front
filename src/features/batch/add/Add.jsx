@@ -15,22 +15,29 @@ export default function AddBatch() {
         capacity: ''
     })
 
-    useEffect(()=>{
-        setValues(prev => ({...prev, event_id: event_id}))
+    useEffect(() => {
+        setValues(prev => ({ ...prev, event_id: event_id }))
     }, [event_id])
 
     async function handleSubmit(e) {
         e.preventDefault()
         try {
             const respons = await request({
-                url: '/v1/batch',
+                url: '/dashboard/batch',
                 method: 'POST',
                 data: values
             })
 
-            console.log(respons)
-            // if (respons.success) {
-            // }
+            console.log(1111,respons)
+            if (respons.success) {
+                alert('success')
+                setValues({
+                    event_id: event_id,
+                    name: '',
+                    price: '',
+                    capacity: ''
+                })
+            }
         } catch (error) {
             console.error('CREATE EVENT ERROR:', error);
         }

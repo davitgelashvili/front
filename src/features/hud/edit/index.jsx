@@ -16,16 +16,15 @@ export const EditHud = () => {
     })
 
     useEffect(() => {
-        console.log(hud_id)
         async function load() {
             try {
                 const respons = await request({
-                    url: `/v1/hud/${hud_id}`,
+                    url: `/dashboard/hud/${hud_id}`,
                     method: 'GET'
                 })
 
                 if (respons.success) {
-                    setValues(perv => ({...perv, ...respons.hud}))
+                    setValues(perv => ({ ...perv, ...respons.hud }))
                 }
             } catch (error) {
                 console.error(error)
@@ -38,13 +37,20 @@ export const EditHud = () => {
         e.preventDefault()
         try {
             const respons = await request({
-                url: `/v1/hud/${hud_id}`,
+                url: `/dashboard/hud/${hud_id}`,
                 method: 'PUT',
                 data: values
             })
 
-            // if (respons.success) {
-            // }
+            if (respons.success) {
+                alert('success')
+                setValues({
+                    title: "",
+                    slug: "",
+                    description: "",
+                    cover: ""
+                })
+            }
         } catch (error) {
             console.error('CREATE EVENT ERROR:', error);
             return res.status(500).json({ success: false, message: error.message });
@@ -52,6 +58,6 @@ export const EditHud = () => {
     }
 
     return (
-        <HudForm attr={{values, setValues, handleSubmit, title: 'რედაქტირება'}} />
+        <HudForm attr={{ values, setValues, handleSubmit, title: `ჰუდის რედაქტირება` }} />
     )
 }

@@ -7,8 +7,8 @@ export default function Form() {
     const { request } = useApi()
     const { login } = useAuth()
     const [values, setValues] = useState({
-        email: 'admin@gmail.com',
-        password: 'Kaikaco123.'
+        email: '',
+        password: ''
     })
 
     async function handleLogin(e) {
@@ -33,7 +33,26 @@ export default function Form() {
 
     return (
         <form>
-            <InputText />
+            <InputText
+                title={'ელ-ფოსტა.'}
+                type={'text'}
+                name={'email'}
+                value={values.email}
+                placeholder={'შეიყვანეთ ინფორამცია'}
+                onChange={(e) => (
+                    console.log(e), setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+                )}
+            />
+            <InputText
+                title={'პაროლი'}
+                type={'text'}
+                name={'password'}
+                value={values.password}
+                placeholder={'შეიყვანეთ ინფორამცია'}
+                onChange={(e) => (
+                    setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+                )}
+            />
             <button onClick={handleLogin}>login</button>
         </form>
     )

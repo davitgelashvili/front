@@ -22,13 +22,23 @@ export const AddEvent = () => {
         e.preventDefault()
         try {
             const respons = await request({
-                url: '/v1/event',
+                url: '/dashboard/event',
                 method: 'POST',
                 data: values
             })
 
-            // if (respons.success) {
-            // }
+            if (respons.success) {
+                setValues({
+                    hud_id: hud_id,
+                    title: '',
+                    description: '',
+                    start_datetime: '',
+                    end_datetime: '',
+                    min_price: '',
+                    max_price: ''
+                })
+                alert('success')
+            }
         } catch (error) {
             console.error('CREATE EVENT ERROR:', error);
             return res.status(500).json({ success: false, message: error.message });
@@ -39,7 +49,7 @@ export const AddEvent = () => {
         async function load() {
             try {
                 const response = await request({
-                    url: `/v1/hud/${hud_id}`,
+                    url: `/dashboard/hud/${hud_id}`,
                     method: 'GET'
                 });
 
