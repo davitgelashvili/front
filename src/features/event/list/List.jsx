@@ -28,13 +28,28 @@ export default function EventList() {
             }
         }
         load()
-    }, [isToken])
+    }, [isToken, hud_id, request])
+
+    const handleDeleteEvent = async (eventId) => {
+        if (!window.confirm('ნამდვილად წაშალო ეს Event?')) return;
+
+        try {
+            await request({
+                url: `/dashboard/hud/${hud_id}/event/${eventId}`,
+                method: 'DELETE'
+            })
+            setData((prevData) => prevData.filter((event) => event.id !== eventId))
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
     return (
         <>
             <div>
                 {data && data?.map((item, index) => {
                     return (
-                        <Item item={item} index={index} key={item.id} />
+                        <Item item={item} index={index} key={item.id} onDelete={() => handleDeleteEvent(item.id)} />
                     )
                 })}
             </div>

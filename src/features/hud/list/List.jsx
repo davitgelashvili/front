@@ -28,13 +28,27 @@ export default function HudList() {
         load()
     }, [isToken])
 
+    const handleDeleteHud = async (hudId) => {
+        if (!window.confirm('ნამდვილად წაშალო ეს HUD?')) return;
+
+        try {
+            await request({
+                url: `/dashboard/hud/${hudId}`,
+                method: 'DELETE'
+            })
+            setData((prevData) => prevData.filter((hud) => hud.id !== hudId))
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
     return (
         <div className="container">
             <div className="row">
                 {data && data?.map(item => {
                     return (
                         <div className="col-4" key={item.id}>
-                            <Item data={item} />
+                            <Item data={item} onDelete={() => handleDeleteHud(item.id)} />
                         </div>
                     )
                 })}

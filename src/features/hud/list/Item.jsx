@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import styles from './styles.module.scss'
 import DateFormat from '../../../components/DateFormat/DateFormat'
 
-export default function Item({ data }) {
+export default function Item({ data, onDelete }) {
 
     return (
         <div className={`box ${styles.item}`}>
@@ -24,7 +24,10 @@ export default function Item({ data }) {
                         <p className={`${styles['item__footer--ticket-name']}`}>Tickets Sold</p>
                         <p className={`${styles['item__footer--ticket-count']}`}>80% Capacity</p>
                     </div>
-                    <Link to={`${data.id}`} className={`${styles['item__footer--link']}`} >Manage</Link>
+                    <div className={styles['item__footer--actions']}>
+                        <button className={styles['item__footer--delete']} onClick={onDelete}>წაშლა</button>
+                        <Link to={`${data.id}`} className={`${styles['item__footer--link']}`} >Manage</Link>
+                    </div>
                 </div>  
             </div>
         </div>

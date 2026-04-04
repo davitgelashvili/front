@@ -75,6 +75,27 @@
             font-weight: 500;
         }
 
+        &--actions {
+            display: flex;
+            align-items: center;
+            gap: rem(10px);
+        }
+
+        &--delete {
+            padding: rem(8px) rem(14px);
+            border: none;
+            border-radius: 8px;
+            background-color: #eb5757;
+            color: #fff;
+            cursor: pointer;
+            font-size: rem(14px);
+            transition: background-color .2s ease;
+
+            &:hover {
+                background-color: #c53131;
+            }
+        }
+
         &--link {
             font-weight: 500;
             text-decoration: none;

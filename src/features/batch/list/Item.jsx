@@ -3,7 +3,7 @@ import DateFormat from '../../../components/DateFormat/DateFormat'
 import styles from './styles.module.scss'
 import { Link } from 'react-router-dom'
 
-export const Item = ({ item, index }) => {
+export const Item = ({ item, index, onDelete }) => {
     return (
         <div className={styles.item}>
             <div className="box">
@@ -29,8 +29,9 @@ export const Item = ({ item, index }) => {
                         </div>
                         <div className="col-3">
                             <div style={{ textAlign: 'center' }}>
-                                <h2>{item.sold_count}</h2>
-                                <p>გაყიდული</p>
+                                <button onClick={onDelete} style={{ background: '#eb5757', color: '#fff', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', marginBottom: '8px' }}>წაშლა</button>
+                                <br />
+                                <Link to={`${item.id}/edit`} style={{ textDecoration: 'none', color: '#007bff' }}>რედაქტირება</Link>
                             </div>
                         </div>
                     </div>

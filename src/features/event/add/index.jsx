@@ -41,7 +41,6 @@ export const AddEvent = () => {
             }
         } catch (error) {
             console.error('CREATE EVENT ERROR:', error);
-            return res.status(500).json({ success: false, message: error.message });
         }
     }
 

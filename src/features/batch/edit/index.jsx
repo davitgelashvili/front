@@ -2,53 +2,50 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import useApi from '../../../http/useApi'
 import { useAuth } from '../../../context/AuthContext'
-import EventForm from '../EventForm/EventForm'
+import BatchForm from '../BatchForm/BatchForm'
 
-export const EditEvent = () => {
+export const EditBatch = () => {
     const { isToken } = useAuth()
-    const { event_id } = useParams()
+    const { batch_id } = useParams()
     const { request } = useApi(isToken)
     const [values, setValues] = useState({
-        title: "",
-        description: "",
-        start_datetime: "",
-        end_datetime: "",
-        min_price: "",
-        max_price: ""
+        name: '',
+        price: '',
+        capacity: ''
     })
 
     useEffect(() => {
         async function load() {
             try {
                 const respons = await request({
-                    url: `/dashboard/event/${event_id}`,
+                    url: `/dashboard/batch/${batch_id}`,
                     method: 'GET'
                 })
 
                 if (respons.success) {
-                    setValues(prev => ({...prev, ...respons.event}))
+                    setValues(prev => ({...prev, ...respons.batch}))
                 }
             } catch (error) {
                 console.error(error)
             }
         }
         load()
-    }, [event_id, request])
+    }, [batch_id, request])
 
     async function handleSubmit(e) {
         e.preventDefault()
         try {
             await request({
-                url: `/dashboard/event/${event_id}`,
+                url: `/dashboard/batch/${batch_id}`,
                 method: 'PUT',
                 data: values
             })
         } catch (error) {
-            console.error('UPDATE EVENT ERROR:', error);
+            console.error('UPDATE BATCH ERROR:', error);
         }
     }
 
     return (
-        <EventForm attr={{values, setValues, handleSubmit, title: 'რედაქტირება'}} />
+        <BatchForm attr={{values, setValues, handleSubmit, title: 'რედაქტირება'}} />
     )
 }

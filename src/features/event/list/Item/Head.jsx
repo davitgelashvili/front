@@ -3,7 +3,7 @@ import DateFormat from '../../../../components/DateFormat/DateFormat'
 import styles from './styles.module.scss'
 import CustomButton from '../../../../components/ui/CustomButton'
 
-export const Head = ({ item }) => {
+export const Head = ({ item, onDelete }) => {
     return (
         <div className={`${styles['head']} d-flex align-items-center justify-content-between`}>
             <div className='d-flex align-items-center'>
@@ -23,10 +23,11 @@ export const Head = ({ item }) => {
                     </CustomButton>
                 </div>
                 <div className={`${styles['head__btns--in']}`}>
-                    <CustomButton url={item?.id} style={'light'}>
+                    <CustomButton url={`${item?.id}/edit`} style={'light'}>
                         <span className={`${styles['head__btns--btn']}`}>Edit</span>
                     </CustomButton>
                 </div>
+                <button className={styles['head__delete']} onClick={onDelete}>Delete</button>
             </div>
         </div>
     )

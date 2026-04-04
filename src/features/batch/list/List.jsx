@@ -31,13 +31,27 @@ export default function BatchList() {
             }
         }
         load()
-    }, [isToken, event_id])
+    }, [isToken, event_id, request])
+
+    const handleDeleteBatch = async (batchId) => {
+        if (!window.confirm('ნამდვილად წაშალო ეს Batch?')) return;
+
+        try {
+            await request({
+                url: `/dashboard/batch/${batchId}`,
+                method: 'DELETE'
+            })
+            setData((prevData) => prevData.filter((batch) => batch.id !== batchId))
+        } catch (error) {
+            console.error(error)
+        }
+    }
     return (
         <>
             <div>
                 {data && data?.map((item, index) => {
                     return (
-                        <Item item={item} index={index} key={item.id} />
+                        <Item item={item} index={index} key={item.id} onDelete={() => handleDeleteBatch(item.id)} />
                     )
                 })}
             </div>
