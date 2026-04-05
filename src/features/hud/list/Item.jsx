@@ -21,8 +21,8 @@ export default function Item({ data, onDelete }) {
                 </div>
                 <div className={`${styles['item__footer']} d-flex align-items-center justify-content-between`}>
                     <div className={`${styles['item__footer--ticket']}`}>
-                        <p className={`${styles['item__footer--ticket-name']}`}>Tickets Sold</p>
-                        <p className={`${styles['item__footer--ticket-count']}`}>80% Capacity</p>
+                        <p className={`${styles['item__footer--ticket-name']}`}>Tickets</p>
+                        <p className={`${styles['item__footer--ticket-count']}`}>{data?.ticket_count || 0}</p>
                     </div>
                     <div className={styles['item__footer--actions']}>
                         <button className={styles['item__footer--delete']} onClick={onDelete}>წაშლა</button>

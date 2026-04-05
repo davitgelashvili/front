@@ -9,25 +9,31 @@ export const Item = ({ item, index, onDelete }) => {
             <div className="box">
                 <div className="container">
                     <div className="row">
-                        <div className="col-3">
+                        <div className="col-2">
                             <div style={{ textAlign: 'center' }}>
                                 <h5>{item.name}</h5>
                                 <p>სახელი</p>
                             </div>
                         </div>
-                        <div className="col-3">
+                        <div className="col-2">
                             <div style={{ textAlign: 'center' }}>
                                 <h2>{item.price}</h2>
                                 <p>ფასი</p>
                             </div>
                         </div>
-                        <div className="col-3">
+                        <div className="col-2">
                             <div style={{ textAlign: 'center' }}>
                                 <h2>{item.capacity}</h2>
-                                <p>რაოდენობა</p>
+                                <p>ბილეთის რაოდენობა</p>
                             </div>
                         </div>
-                        <div className="col-3">
+                        <div className="col-2">
+                            <div style={{ textAlign: 'center' }}>
+                                <h2>{item.ticket_count || 0}</h2>
+                                <p>შექმნილი ბილეთები</p>
+                            </div>
+                        </div>
+                        <div className="col-4">
                             <div style={{ textAlign: 'center' }}>
                                 <button onClick={onDelete} style={{ background: '#eb5757', color: '#fff', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', marginBottom: '8px' }}>წაშლა</button>
                                 <br />

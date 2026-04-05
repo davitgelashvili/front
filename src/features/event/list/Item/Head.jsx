@@ -13,6 +13,7 @@ export const Head = ({ item, onDelete }) => {
                 </div>
                 <h1 className={`${styles['head__title']}`}>
                     {item?.title}
+                    <span style={{ fontSize: '14px', color: '#666', marginLeft: '10px' }}>Tickets: {item?.ticket_count || 0}</span>
                     {/* <p>{item?.min_price} - {item?.max_price} ლარი</p> */}
                 </h1>
             </div>

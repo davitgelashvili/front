@@ -1,13 +1,16 @@
 import styles from './styles.module.scss'
 
-export default function InputText({ title, type, name, value, placeholder, onChange, errorr }) {
+export default function InputText({ title, type, name, value, placeholder, onChange, errorr, options }) {
     switch (type) {
         case 'select':
             return (
                 <label className={`${styles.inputtext}`}>
                     <p className={`${styles.inputtext__title}`}>{title}</p>
-                    <select onChange={onChange} className={`${styles.inputtext__input} box`}>
-                        <option value={'published'}>published</option>
+                    <select value={value} onChange={onChange} className={`${styles.inputtext__input} box`}>
+                        <option value="">აირჩიეთ</option>
+                        {options && options.map(option => (
+                            <option key={option.value} value={option.value}>{option.label}</option>
+                        ))}
                     </select>
                     {errorr && <p>{errorr}</p>}
                 </label>

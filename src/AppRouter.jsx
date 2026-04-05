@@ -11,6 +11,7 @@ import { Header } from "./components/layout/Header";
 import { AddBatchPage } from "./pages/AddBatchPage";
 import EditHudPage from "./pages/EditHudPage";
 import EditBatchPage from "./pages/EditBatchPage";
+import TicketsPage from "./pages/TicketsPage";
 
 export default function AppRouter() {
     return (
@@ -18,6 +19,8 @@ export default function AppRouter() {
             <Header />
             <Routes>
                 <Route index element={<DashboardPage />} />
+                <Route path="/dashboard" element={<DashboardPage />} />
+                <Route path="/tickets" element={<TicketsPage />} />
                 <Route path="hud" element={<HudPage />} />
                 <Route path="hud/add" element={<AddHudPage />} />
                 <Route path="hud/:hud_id/edit" element={<EditHudPage />} />
