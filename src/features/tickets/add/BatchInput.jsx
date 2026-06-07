@@ -4,9 +4,10 @@ import { useAuth } from '../../../context/AuthContext'
 import InputText from '../../../components/ui/InputText'
 
 export const BatchInput = ({ eventId, value, onChange }) => {
-    const { isToken } = useAuth()
+    const { isToken, userRole } = useAuth()
     const { request } = useApi(isToken)
     const [batches, setBatches] = useState([])
+    const prefix = userRole === 'Admin' ? '/dashboard' : '/panel'
 
     useEffect(() => {
         if (eventId) {
@@ -19,7 +20,7 @@ export const BatchInput = ({ eventId, value, onChange }) => {
     async function loadBatches(eventId) {
         try {
             const respons = await request({
-                url: `/dashboard/event/${eventId}/batch`,
+                url: `${prefix}/event/${eventId}/batch`,
                 method: 'GET'
             })
             if (respons.success) {

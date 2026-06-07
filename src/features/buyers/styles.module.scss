@@ -1,0 +1,288 @@
+.topBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 28px 0 14px;
+    gap: 16px;
+}
+
+.pageTitle {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.searchInput {
+    height: 38px;
+    padding: 0 14px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+    min-width: 220px;
+    &:focus { border-color: #111; }
+}
+
+/* Table */
+.searchBtn {
+    height: 38px;
+    padding: 0 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1.5px solid #111;
+    background: #111;
+    color: #fff;
+    &:hover { background: #333; }
+}
+
+.tableHead {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 80px 110px 110px 100px;
+    padding: 10px 20px;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 12px;
+    font-weight: 600;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.tableRow {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 80px 110px 110px 100px;
+    padding: 12px 20px;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 13px;
+    align-items: center;
+    &:last-child { border-bottom: none; }
+    &:hover { background: #fafafa; }
+}
+
+.buyerCell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #111;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.buyerName {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 1px;
+    color: #111;
+}
+
+.buyerSub {
+    font-size: 11px;
+    color: #aaa;
+    margin: 0;
+}
+
+.cell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 6px;
+}
+
+.mono {
+    font-family: monospace;
+    font-size: 11px;
+    color: #555;
+}
+
+.badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.badgeGreen { background: #dcfce7; color: #16a34a; }
+.badgeRed   { background: #fce8e6; color: #c62828; }
+.badgeGray  { background: #f3f4f6; color: #6b7280; }
+
+.sActive    { background: #dcfce7; color: #16a34a; }
+.sValidated { background: #dbeafe; color: #1d4ed8; }
+.sUsed      { background: #f3f4f6; color: #6b7280; }
+.sCancelled { background: #fce8e6; color: #c62828; }
+
+.detailLink {
+    font-size: 13px;
+    color: #1a73e8;
+    text-decoration: none;
+    white-space: nowrap;
+    &:hover { text-decoration: underline; }
+}
+
+.count {
+    font-size: 13px;
+    color: #aaa;
+    margin-top: 10px;
+}
+
+/* Detail page */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 24px 0 16px;
+}
+
+.backLink {
+    display: inline-block;
+    font-size: 13px;
+    color: #888;
+    text-decoration: none;
+    &:hover { color: #111; }
+}
+
+.infoRows {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 6px;
+    font-size: 13px;
+    color: #555;
+    p { margin: 0; }
+}
+
+.buyerCard {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.buyerCardLeft {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.avatarLg {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #111;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.buyerCardName {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 4px;
+}
+
+.buyerCardId {
+    font-size: 12px;
+    font-family: monospace;
+    color: #aaa;
+    margin: 0 0 4px;
+}
+
+.buyerCardSub {
+    font-size: 13px;
+    color: #555;
+    margin: 0;
+}
+
+.buyerCardStats {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.statBox {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px 18px;
+    text-align: center;
+    min-width: 100px;
+}
+
+.statVal {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0 0 2px;
+    color: #111;
+}
+
+.statLabel {
+    font-size: 11px;
+    color: #9ca3af;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.sectionTitle {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 12px;
+}
+
+/* Ticket table in detail */
+.tHead {
+    display: grid;
+    grid-template-columns: 1.4fr 1.5fr 1.5fr 1.4fr 100px 80px 120px;
+    padding: 10px 20px;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 12px;
+    font-weight: 600;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.tRow {
+    display: grid;
+    grid-template-columns: 1.4fr 1.5fr 1.5fr 1.4fr 100px 80px 120px;
+    padding: 11px 20px;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 13px;
+    align-items: center;
+    &:last-child { border-bottom: none; }
+    &:hover { background: #fafafa; }
+}
+
+.empty {
+    padding: 40px;
+    text-align: center;
+    color: #aaa;
+    font-size: 14px;
+}

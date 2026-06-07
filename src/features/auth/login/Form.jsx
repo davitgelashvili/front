@@ -1,59 +1,56 @@
 import { useState } from 'react'
 import InputText from '../../../components/ui/InputText'
+import CustomButton from '../../../components/ui/CustomButton'
 import useApi from '../../../http/useApi'
 import { useAuth } from '../../../context/AuthContext'
 
 export default function Form() {
     const { request } = useApi()
     const { login } = useAuth()
-    const [values, setValues] = useState({
-        email: '',
-        password: ''
-    })
+    const [values, setValues] = useState({ email: '', password: '' })
+    const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
 
-    async function handleLogin(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
+        setError('')
+        setLoading(true)
         try {
-            const respons = await request({
-                url: '/auth/login',
-                method: 'POST',
-                data: {
-                    ...values
-                }
-            })
-
-            if (respons.success) {
-                login(respons.accessToken)
+            const res = await request({ url: '/auth/login', method: 'POST', data: values })
+            if (res.success) {
+                login(res.accessToken, res.user?.role)
+            } else {
+                setError(res.message || 'შესვლა ვერ მოხერხდა')
             }
-            console.log(respons)
-        } catch (error) {
-            console.error(error)
+        } catch {
+            setError('სერვერის შეცდომა')
+        } finally {
+            setLoading(false)
         }
     }
 
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <InputText
-                title={'ელ-ფოსტა.'}
-                type={'text'}
+                title={'ელ-ფოსტა'}
+                type={'email'}
                 name={'email'}
                 value={values.email}
-                placeholder={'შეიყვანეთ ინფორამცია'}
-                onChange={(e) => (
-                    console.log(e), setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-                )}
+                placeholder={'შეიყვანეთ ელ-ფოსტა'}
+                onChange={(e) => setValues(prev => ({ ...prev, [e.target.name]: e.target.value }))}
             />
             <InputText
                 title={'პაროლი'}
-                type={'text'}
+                type={'password'}
                 name={'password'}
                 value={values.password}
-                placeholder={'შეიყვანეთ ინფორამცია'}
-                onChange={(e) => (
-                    setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-                )}
+                placeholder={'შეიყვანეთ პაროლი'}
+                onChange={(e) => setValues(prev => ({ ...prev, [e.target.name]: e.target.value }))}
             />
-            <button onClick={handleLogin}>login</button>
+            {/* {error && <p style={{ color: 'red', margin: '8px 0' }}>{error}</p>} */}
+            <CustomButton type="submit" style="dark" loading={loading}>
+                შესვლა
+            </CustomButton>
         </form>
     )
 }

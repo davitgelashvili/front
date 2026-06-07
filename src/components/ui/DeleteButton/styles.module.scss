@@ -1,0 +1,19 @@
+.btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1.5px solid #fecaca;
+    background: #fff;
+    color: #c62828;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s, border-color 0.15s;
+
+    &:hover {
+        background: #fce8e6;
+        border-color: #c62828;
+    }
+}

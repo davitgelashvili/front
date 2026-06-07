@@ -9,7 +9,9 @@ export default function HudForm({ attr }) {
                 <Form attr={{
                     values: attr?.values,
                     setValues: attr?.setValues,
-                    handleSubmit: attr?.handleSubmit
+                    handleSubmit: attr?.handleSubmit,
+                    loading: attr?.loading,
+                    error: attr?.error,
                 }} />
             </div>
         </div>

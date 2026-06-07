@@ -1,0 +1,109 @@
+.page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+}
+
+.title  { font-size: 22px; font-weight: 700; margin: 0; }
+
+.backLink {
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+    &:hover { color: #111; }
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ticket {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 12px;
+    background: #fff;
+    @media (max-width: 600px) { flex-wrap: wrap; }
+}
+
+.cover {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.showName  { font-size: 15px; font-weight: 600; margin: 0; }
+.eventName { font-size: 13px; color: #555; margin: 0; }
+.eventDate { font-size: 12px; color: #888; margin: 0; }
+.batch     { font-size: 11px; color: #bbb; margin: 4px 0 0; }
+
+.right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+    flex-shrink: 0;
+}
+
+.status {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    &.active    { background: #dcfce7; color: #16a34a; }
+    &.validated { background: #dbeafe; color: #1d4ed8; }
+    &.used      { background: #f3f4f6; color: #9ca3af; }
+}
+
+.price    { font-size: 16px; font-weight: 700; }
+.ticketId { font-size: 11px; color: #bbb; font-family: monospace; }
+
+.qr {
+    background: #fff;
+    padding: 8px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: #888;
+    p { margin-bottom: 20px; }
+}
+
+.browseBtn {
+    display: inline-block;
+    background: #111;
+    color: #fff;
+    padding: 11px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.center { text-align: center; padding: 80px 20px; color: #888; }

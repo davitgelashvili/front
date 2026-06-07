@@ -1,69 +1,45 @@
 import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useAuth } from '../../../context/AuthContext'
 import useApi from '../../../http/useApi'
 import EventForm from '../EventForm/EventForm'
-import { useParams } from 'react-router-dom'
+import { useToast } from '../../../context/ToastContext'
 
 export const AddEvent = () => {
-    const { hud_id } = useParams();
-    const { isToken } = useAuth()
+    const { hud_id } = useParams()
+    const { isToken, userRole } = useAuth()
     const { request } = useApi(isToken)
-    const [values, setValues] = useState({
-        hud_id: hud_id,
-        title: '',
-        description: '',
-        start_datetime: '',
-        end_datetime: '',
-        min_price: '',
-        max_price: ''
-    })
-
-    async function handleSubmit(e) {
-        e.preventDefault()
-        try {
-            const respons = await request({
-                url: '/dashboard/event',
-                method: 'POST',
-                data: values
-            })
-
-            if (respons.success) {
-                setValues({
-                    hud_id: hud_id,
-                    title: '',
-                    description: '',
-                    start_datetime: '',
-                    end_datetime: '',
-                    min_price: '',
-                    max_price: ''
-                })
-                alert('success')
-            }
-        } catch (error) {
-            console.error('CREATE EVENT ERROR:', error);
-        }
-    }
+    const navigate = useNavigate()
+    const toast = useToast()
+    const prefix = userRole === 'Admin' ? '/dashboard' : '/panel'
+    const [values, setValues] = useState({ hud_id, title: '', description: '', start_datetime: '', end_datetime: '', min_price: '', max_price: '' })
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState('')
 
     useEffect(() => {
         async function load() {
             try {
-                const response = await request({
-                    url: `/dashboard/hud/${hud_id}`,
-                    method: 'GET'
-                });
-
-                if (response.success) {
-                    setValues(prev => ({ ...prev, title: response?.hud?.title, description: response?.hud?.description }))
-                }
-            } catch (error) {
-                console.error('LOAD TICKETS ERROR:', error);
-                alert(error.message);
-            }
+                const res = await request({ url: `${prefix}/hud/${hud_id}`, method: 'GET' })
+                if (res.success) setValues(prev => ({ ...prev, title: res.hud?.title, description: res.hud?.description }))
+            } catch {}
         }
-        load();
-    }, [hud_id, request]);
+        load()
+    }, [hud_id])
 
-    return (
-        <EventForm attr={{ values, setValues, handleSubmit, title: 'ჰუდის შექმნა' }} />
-    )
+    async function handleSubmit(e) {
+        e.preventDefault()
+        setError('')
+        setLoading(true)
+        try {
+            const res = await request({ url: `${prefix}/event`, method: 'POST', data: values })
+            if (res.success) { toast('ივენთი შეიქმნა', 'success'); navigate(-1) }
+            else setError(res.message || 'შეცდომა')
+        } catch {
+            setError('სერვერის შეცდომა')
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    return <EventForm attr={{ values, setValues, handleSubmit, title: 'დღის შექმნა', loading, error }} />
 }

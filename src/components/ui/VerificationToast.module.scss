@@ -1,0 +1,93 @@
+.container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.toast {
+    pointer-events: all;
+    background: #fff;
+    border: 1.5px solid #e5e7eb;
+    border-left: 4px solid #111;
+    border-radius: 12px;
+    padding: 14px 16px 14px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    min-width: 280px;
+    max-width: 340px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.12);
+    animation: slideIn .25s ease;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.body {
+    flex: 1;
+    min-width: 0;
+}
+
+.title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: #888;
+    margin: 0 0 3px;
+}
+
+.name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+    margin: 0 0 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.hud {
+    font-size: 12px;
+    color: #888;
+    margin: 0 0 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.link {
+    font-size: 12px;
+    font-weight: 600;
+    color: #111;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+}
+
+.close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    color: #bbb;
+    cursor: pointer;
+    line-height: 1;
+    &:hover { color: #555; }
+}
+
+.toast { position: relative; }

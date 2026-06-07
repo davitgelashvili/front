@@ -1,53 +1,63 @@
-import styles from './styles.module.scss'
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useApi from "../../../http/useApi";
 import { useAuth } from "../../../context/AuthContext";
+import { useBatchWs } from "../../../hooks/useBatchWs";
 import { Item } from "./Item";
 import CustomButton from "../../../components/ui/CustomButton";
+import { useToast } from "../../../context/ToastContext";
 
 export default function BatchList() {
     const [data, setData] = useState(null)
-    const { isToken } = useAuth()
+    const { isToken, userRole } = useAuth()
     const { event_id } = useParams()
     const { request } = useApi(isToken)
+    const toast = useToast()
+    const prefix = userRole === 'Admin' ? '/dashboard' : '/panel'
 
     useEffect(() => {
-        console.log(isToken)
         async function load() {
             try {
                 const respons = await request({
-                    url: `/dashboard/event/${event_id}/batch`,
+                    url: `${prefix}/event/${event_id}/batch`,
                     method: 'GET'
                 })
 
-                console.log(1, respons)
-                if (respons.success) {
-                    setData(respons.batches)
-                    return respons
-                }
+                if (respons.success) setData(respons.batches)
             } catch (error) {
-                console.log(error)
+                console.error(error)
             }
         }
         load()
     }, [isToken, event_id, request])
 
+    useBatchWs(({ batch_id, sold_count }) => {
+        setData(prev => prev
+            ? prev.map(b => b.id === batch_id ? { ...b, sold_count } : b)
+            : prev
+        )
+    })
+
     const handleDeleteBatch = async (batchId) => {
         if (!window.confirm('ნამდვილად წაშალო ეს Batch?')) return;
-
         try {
-            await request({
-                url: `/dashboard/batch/${batchId}`,
-                method: 'DELETE'
-            })
-            setData((prevData) => prevData.filter((batch) => batch.id !== batchId))
+            await request({ url: `${prefix}/batch/${batchId}`, method: 'DELETE' })
+            setData(prev => prev.filter(b => b.id !== batchId))
+            toast('კალათა წაიშალა', 'success')
         } catch (error) {
             console.error(error)
+            toast('წაშლა ვერ მოხერხდა', 'error')
         }
     }
     return (
         <>
+            <div className='d-flex justify-content-end mb-3'>
+                <div>
+                    <CustomButton url={'add'} style={'dark'}>
+                        Add Batch
+                    </CustomButton>
+                </div>
+            </div>
             <div>
                 {data && data?.map((item, index) => {
                     return (
@@ -55,9 +65,6 @@ export default function BatchList() {
                     )
                 })}
             </div>
-            <CustomButton url={'add'} style={'light'}>
-                <span className={styles['list--addbtn']}>Add Batch</span>
-            </CustomButton>
         </>
     )
 }

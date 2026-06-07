@@ -1,9 +1,3 @@
-import AddBatch from '../features/batch/add/Add'
+import { AddBatch } from '../features/batch'
 
-export const AddBatchPage = () => {
-    return (
-        <>
-            <AddBatch />
-        </>
-    )
-}
+export const AddBatchPage = () => <AddBatch />

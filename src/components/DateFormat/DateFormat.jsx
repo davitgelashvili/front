@@ -23,24 +23,17 @@ export default function DateFormat(dateInput) {
     };
   }
 
-  const date = new Date(dateInput);
-
-  if (isNaN(date)) {
-    return {
-      getDate: () => '',
-      getMonth: () => '',
-    };
+  const str = dateInput.toString().slice(0, 10);
+  const parts = str.split('-');
+  if (parts.length < 3) {
+    return { getDate: () => '', getMonth: () => '' };
   }
 
-  // UTC-ს ვიღებთ
-  let day = date.getUTCDate();
-  const month = date.getUTCMonth(); // 0–11
-
-  // შენი პირობა: 10-ის ქვემოთ +1
-  if (day < 10) day += 1;
+  const day   = parseInt(parts[2], 10);
+  const month = parseInt(parts[1], 10) - 1; // 0–11
 
   return {
-    getDate: () => day,
+    getDate:  () => day,
     getMonth: () => monthsKa[month],
   };
 }

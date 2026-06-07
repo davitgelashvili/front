@@ -1,33 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import HudForm from '../HudForm/HudForm'
-import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import useApi from '../../../http/useApi'
 import { useAuth } from '../../../context/AuthContext'
+import HudForm from '../HudForm/HudForm'
+import { useToast } from '../../../context/ToastContext'
 
 export const EditHud = () => {
-    const { isToken } = useAuth()
+    const { isToken, userRole } = useAuth()
     const { hud_id } = useParams()
     const { request } = useApi(isToken)
-    const [values, setValues] = useState({
-        title: "",
-        slug: "",
-        description: "",
-        cover: ""
-    })
+    const navigate = useNavigate()
+    const toast = useToast()
+    const prefix = userRole === 'Admin' ? '/dashboard' : '/panel'
+    const [values, setValues] = useState({ title: '', slug: '', description: '', cover: '', requires_verification: false, max_tickets_per_buyer: '' })
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState('')
 
     useEffect(() => {
         async function load() {
             try {
-                const respons = await request({
-                    url: `/dashboard/hud/${hud_id}`,
-                    method: 'GET'
-                })
-
-                if (respons.success) {
-                    setValues(perv => ({ ...perv, ...respons.hud }))
-                }
-            } catch (error) {
-                console.error(error)
+                const res = await request({ url: `${prefix}/hud/${hud_id}`, method: 'GET' })
+                if (res.success) setValues(prev => ({
+                    ...prev,
+                    ...res.hud,
+                    requires_verification: !!res.hud.requires_verification,
+                    max_tickets_per_buyer: res.hud.max_tickets_per_buyer ?? '',
+                }))
+            } catch {
+                setError('ჩატვირთვის შეცდომა')
             }
         }
         load()
@@ -35,29 +35,18 @@ export const EditHud = () => {
 
     async function handleSubmit(e) {
         e.preventDefault()
+        setError('')
+        setLoading(true)
         try {
-            const respons = await request({
-                url: `/dashboard/hud/${hud_id}`,
-                method: 'PUT',
-                data: values
-            })
-
-            if (respons.success) {
-                alert('success')
-                setValues({
-                    title: "",
-                    slug: "",
-                    description: "",
-                    cover: ""
-                })
-            }
-        } catch (error) {
-            console.error('CREATE EVENT ERROR:', error);
-            return res.status(500).json({ success: false, message: error.message });
+            const res = await request({ url: `${prefix}/hud/${hud_id}`, method: 'PUT', data: values })
+            if (res.success) { toast('HUD განახლდა', 'success'); navigate('/hud') }
+            else setError(res.message || 'შეცდომა')
+        } catch {
+            setError('სერვერის შეცდომა')
+        } finally {
+            setLoading(false)
         }
     }
 
-    return (
-        <HudForm attr={{ values, setValues, handleSubmit, title: `ჰუდის რედაქტირება` }} />
-    )
+    return <HudForm attr={{ values, setValues, handleSubmit, title: 'ჰუდის რედაქტირება', loading, error }} />
 }

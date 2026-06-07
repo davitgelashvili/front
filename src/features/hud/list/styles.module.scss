@@ -1,115 +1,36 @@
-@use "./../../../functions" as *;
-
 .list {
     &--addbtn {
-        padding: 20px;
+        // padding: 20px;
     }
 }
 
-.item {
-    margin: 12px 0;
+.filterBar {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    margin: 20px 0 16px;
+    flex-wrap: wrap;
+}
+
+.searchInput {
+    height: 38px;
+    padding: 0 12px;
+    border: 1.5px solid #e5e7eb;
     border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+    min-width: 200px;
+    &:focus { border-color: #111; }
+}
 
-    &:hover {
-        box-shadow: 0px 2px 9px -8px #000;
-    }
-
-    &__cover {
-        margin: 0;
-        width: 100%;
-        height: 180px;
-
-        img {
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-    &__body {
-        padding: rem(20px);
-    }
-
-    &__text {
-        margin-bottom: rem(16px);
-
-        &--title {
-            margin: 0;
-            margin-bottom: rem(16px);
-            font-size: rem(18px);
-        }
-
-        &--desc {
-            font-size: rem(14px);
-            color: var(--textColor);
-            height: 36px;
-            overflow: hidden;
-            line-height: 18px;
-            word-break: break-all;
-        }
-
-        &--date {
-            margin-top: rem(16px);
-            font-size: rem(12px);
-            color: var(--textColor);
-            font-weight: 500;
-
-        }
-    }
-
-    &__footer {
-        border-top: 1px solid var(--borderColor);
-        padding-top: rem(16px);
-
-        &--ticket {}
-
-        &--ticket-name {
-            margin: 0;
-            color: var(--lightTextColor);
-            font-size: rem(10px);
-        }
-
-        &--ticket-count {
-            margin: 0;
-            color: var(--blue);
-            font-size: rem(14px);
-            font-weight: 500;
-        }
-
-        &--actions {
-            display: flex;
-            align-items: center;
-            gap: rem(10px);
-        }
-
-        &--delete {
-            padding: rem(8px) rem(14px);
-            border: none;
-            border-radius: 8px;
-            background-color: #eb5757;
-            color: #fff;
-            cursor: pointer;
-            font-size: rem(14px);
-            transition: background-color .2s ease;
-
-            &:hover {
-                background-color: #c53131;
-            }
-        }
-
-        &--link {
-            font-weight: 500;
-            text-decoration: none;
-            color: var(--blue);
-            display: block;
-            background-color: var(--lightBlue);
-            padding: rem(8px) rem(16px);
-            border-radius: 8px;
-
-            &:hover {
-                color: #fff;
-                background-color: var(--blue);
-            }
-
-        }
-    }
+.filterSelect {
+    height: 38px;
+    padding: 0 10px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+    background: #fff;
+    cursor: pointer;
+    &:focus { border-color: #111; }
 }

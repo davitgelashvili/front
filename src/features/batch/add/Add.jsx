@@ -1,52 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import Form from './form';
-import { useAuth } from '../../../context/AuthContext';
-import useApi from '../../../http/useApi';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useAuth } from '../../../context/AuthContext'
+import useApi from '../../../http/useApi'
+import Form from './form'
+import { useToast } from '../../../context/ToastContext'
 
 export default function AddBatch() {
-    const { event_id } = useParams();
-    const { isToken } = useAuth()
+    const { event_id } = useParams()
+    const { isToken, userRole } = useAuth()
     const { request } = useApi(isToken)
-    const [values, setValues] = useState({
-        event_id: event_id,
-        name: '',
-        price: '',
-        capacity: ''
-    })
+    const navigate = useNavigate()
+    const toast = useToast()
+    const prefix = userRole === 'Admin' ? '/dashboard' : '/panel'
+    const [values, setValues] = useState({ event_id, name: '', price: '', capacity: '' })
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState('')
 
     useEffect(() => {
-        setValues(prev => ({ ...prev, event_id: event_id }))
+        setValues(prev => ({ ...prev, event_id }))
     }, [event_id])
 
     async function handleSubmit(e) {
         e.preventDefault()
+        setError('')
+        setLoading(true)
         try {
-            const respons = await request({
-                url: '/dashboard/batch',
-                method: 'POST',
-                data: values
-            })
-
-            console.log(1111,respons)
-            if (respons.success) {
-                alert('success')
-                setValues({
-                    event_id: event_id,
-                    name: '',
-                    price: '',
-                    capacity: ''
-                })
-            }
-        } catch (error) {
-            console.error('CREATE EVENT ERROR:', error);
+            const res = await request({ url: `${prefix}/batch`, method: 'POST', data: values })
+            if (res.success) { toast('კალათა შეიქმნა', 'success'); navigate(-1) }
+            else setError(res.message || 'შეცდომა')
+        } catch {
+            setError('სერვერის შეცდომა')
+        } finally {
+            setLoading(false)
         }
     }
 
     return (
         <div className='container-fluid box'>
             <h1>კალათის დამატება</h1>
-            <Form attr={{ values, setValues, handleSubmit }} />
+            <Form attr={{ values, setValues, handleSubmit, loading, error }} />
         </div>
-    );
+    )
 }

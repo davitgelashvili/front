@@ -3,13 +3,21 @@ import './App.module.scss'
 import AppRouter from './AppRouter'
 import { LoginPage } from './pages/Login'
 import { useAuth } from './context/AuthContext'
+import { VerificationsProvider } from './context/VerificationsContext'
+import VerificationToast from './components/ui/VerificationToast'
 
 export const App = () => {
     const { isToken } = useAuth()
-    console.log(isToken)
     return (
         <Router>
-            {isToken ? <AppRouter /> : <LoginPage />}
+            {isToken ? (
+                <VerificationsProvider>
+                    <AppRouter />
+                    <VerificationToast />
+                </VerificationsProvider>
+            ) : (
+                <LoginPage />
+            )}
         </Router>
     )
 }

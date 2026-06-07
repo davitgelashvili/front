@@ -1,0 +1,120 @@
+.topBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 28px 0 14px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.pageTitle {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.filters {
+    display: flex;
+    gap: 6px;
+}
+
+.filterBtn {
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1.5px solid #e5e7eb;
+    background: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #555;
+    &:hover { border-color: #111; color: #111; }
+    &.active { background: #111; color: #fff; border-color: #111; }
+}
+
+.tableHead {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr 1fr 110px 100px 140px;
+    padding: 10px 20px;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 12px;
+    font-weight: 600;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr 1fr 110px 100px 140px;
+    padding: 12px 20px;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 13px;
+    align-items: center;
+    &:last-child { border-bottom: none; }
+    &:hover { background: #fafafa; }
+}
+
+.buyerCell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #111;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.buyerName { font-size: 13px; font-weight: 600; margin: 0 0 1px; }
+.buyerSub  { font-size: 11px; color: #aaa; margin: 0; }
+
+.cell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 6px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.sPending  { background: #fef9c3; color: #854d0e; }
+.sVerified { background: #dcfce7; color: #16a34a; }
+.sRejected { background: #fce8e6; color: #c62828; }
+
+.actions {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.actionBtn {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+.approveBtn { background: #dcfce7; color: #16a34a; &:hover:not(:disabled) { background: #bbf7d0; } }
+.rejectBtn  { background: #fce8e6; color: #c62828; &:hover:not(:disabled) { background: #fecaca; } }
+
+.count { font-size: 13px; color: #aaa; margin-top: 10px; }
+.empty { padding: 40px; text-align: center; color: #aaa; font-size: 14px; }

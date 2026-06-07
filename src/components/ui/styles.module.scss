@@ -14,34 +14,55 @@
     }
 }
 
+.loader {
+    display: inline-block;
+    border: 2px solid;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
 .custombutton {
-    // width: 100%;
-    display: block;
+    width: 100%;
+    display: flex;
+    justify-content: center;
     border-radius: 12px;
     text-decoration: none;
     text-align: center;
+    padding: 12px 16px;
+    border: none;
+    cursor: pointer;
 
     & > span {
         display: block;
     }
 
-    &--light {
-        color: var(--blue);
-        background-color: var(--lightBlue);
-
-        &:hover {
-            color: #fff;
-            background-color: var(--blue);
-        }
-    }
-
-    &--dark {
-        color: #fff;
-        background-color: var(--blue);
-
-        &:hover {
+    
+    &__btn {
+        &--light {
             color: var(--blue);
             background-color: var(--lightBlue);
+    
+            &:hover {
+                color: #fff;
+                background-color: var(--blue);
+            }
         }
+
+        &--dark {
+            color: #fff;
+            background-color: var(--blue);
+    
+            // &:hover {
+            //     color: var(--blue);
+            //     background-color: var(--lightBlue);
+            // }
+        }
+
     }
+
 }

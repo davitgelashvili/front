@@ -1,30 +1,242 @@
-.title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 2rem;
-    color: #333;
+.wrap {
+    padding: 32px 0 0;
 }
 
-.statCard {
+.sectionTitle {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 16px;
+    color: #111;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 32px;
+
+    @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 500px) { grid-template-columns: 1fr; }
+}
+
+.card {
     background: #fff;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    text-align: center;
-    border: 1px solid #e0e0e0;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
-.statNumber {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #007bff;
-    margin-bottom: 0.5rem;
+.cardIcon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
 }
 
-.statLabel {
-    font-size: 1rem;
-    color: #666;
+.cardBody {}
+
+.cardNum {
+    font-size: 26px;
+    font-weight: 800;
+    color: #111;
+    line-height: 1;
+    margin: 0 0 4px;
+}
+
+.cardLabel {
+    font-size: 13px;
+    color: #888;
+    margin: 0;
+}
+
+/* Recent tickets table */
+.tableWrap {
+    background: #fff;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 32px;
+}
+
+.tableHead {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1.5fr 1fr 1fr 80px;
+    padding: 11px 20px;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 12px;
+    font-weight: 600;
+    color: #9ca3af;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
+}
+
+.tableRow {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1.5fr 1fr 1fr 80px;
+    padding: 12px 20px;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 13px;
+    align-items: center;
+
+    &:last-child { border-bottom: none; }
+    &:hover { background: #fafafa; }
+}
+
+.cell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 8px;
+}
+
+.cellMono {
+    font-family: monospace;
+    font-size: 12px;
+    color: #555;
+}
+
+/* Revenue by HUD */
+.hudRevenueWrap {
+    background: #fff;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.hudRow {
+    display: grid;
+    grid-template-columns: 1fr 2fr 90px;
+    align-items: center;
+    gap: 12px;
+}
+
+.hudLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.hudLink {
+    font-size: 13px;
+    font-weight: 600;
+    color: #111;
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    &:hover { text-decoration: underline; }
+}
+
+.hudTickets {
+    font-size: 11px;
+    color: #aaa;
+    white-space: nowrap;
+}
+
+.hudBarWrap {
+    height: 8px;
+    background: #f3f4f6;
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.hudBar {
+    height: 100%;
+    background: #111;
+    border-radius: 99px;
+    transition: width .4s ease;
+    min-width: 2px;
+}
+
+.hudRevNum {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111;
+    text-align: right;
+}
+
+/* Daily sales chart */
+.chartWrap {
+    background: #fff;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 20px 24px 12px;
+    margin-bottom: 32px;
+}
+
+.chartSvg {
+    width: 100%;
+    overflow: visible;
+}
+
+.chartAxis {
+    font-size: 10px;
+    fill: #aaa;
+}
+
+.chartTooltip {
+    position: absolute;
+    background: #111;
+    color: #fff;
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 7px;
+    pointer-events: none;
+    white-space: nowrap;
+    transform: translate(-50%, -110%);
+    z-index: 10;
+}
+
+.chartLegend {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #888;
+}
+
+.chartDot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.statusBadge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+
+    &.active, &.valid {
+        background: #dcfce7;
+        color: #16a34a;
+    }
+    &.validated {
+        background: #dbeafe;
+        color: #1d4ed8;
+    }
+    &.used {
+        background: #f3f4f6;
+        color: #6b7280;
+    }
+    &.cancelled {
+        background: #fce8e6;
+        color: #c62828;
+    }
 }

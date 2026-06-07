@@ -1,7 +1,5 @@
-import { Tickets } from "../features/tickets";
+import { Tickets } from '../features/tickets'
 
 export default function TicketsPage() {
-    return (
-        <Tickets />
-    )
+    return <Tickets />
 }

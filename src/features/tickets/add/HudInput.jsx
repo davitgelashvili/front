@@ -4,9 +4,10 @@ import { useAuth } from '../../../context/AuthContext'
 import InputText from '../../../components/ui/InputText'
 
 export const HudInput = ({ value, onChange }) => {
-    const { isToken } = useAuth()
+    const { isToken, userRole } = useAuth()
     const { request } = useApi(isToken)
     const [huds, setHuds] = useState([])
+    const prefix = userRole === 'Admin' ? '/dashboard' : '/panel'
 
     useEffect(() => {
         loadHuds()
@@ -15,7 +16,7 @@ export const HudInput = ({ value, onChange }) => {
     async function loadHuds() {
         try {
             const respons = await request({
-                url: `/dashboard/hud`,
+                url: `${prefix}/hud`,
                 method: 'GET'
             })
             if (respons.success) {

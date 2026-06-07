@@ -1,26 +1,92 @@
-@use './../../../functions' as *;
-
-.list {
-    &--addbtn {
-        padding: 20px;
-    }
+.item {
+    margin: 10px 0;
 }
 
-.item {
-    margin: 12px 0;
-    
-    &__cover {
-        margin: 0;
-        width: 100%;
-        height: 200px;
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr auto;
+    gap: 16px;
+    align-items: center;
+    padding: 4px 0;
+}
 
-        img {
-            width: 100%;
-            height: 100%;
-        }
-    }
+.col {
+    text-align: center;
+}
 
-    &__body {
-        padding: 12px;
-    }
+.colWide {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.colActions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.label {
+    font-size: 11px;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin: 0 0 4px;
+}
+
+.value {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+    color: #111;
+}
+
+.capRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.capNumbers {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+}
+
+.pct {
+    font-size: 13px;
+    font-weight: 700;
+    margin-left: auto;
+}
+
+.barTrack {
+    width: 100%;
+    height: 8px;
+    background: #f3f4f6;
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.barFill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 0.3s;
+}
+
+.editLink {
+    font-size: 13px;
+    color: #1a73e8;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+}
+
+.deleteBtn {
+    font-size: 13px;
+    color: #c62828;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    &:hover { text-decoration: underline; }
 }

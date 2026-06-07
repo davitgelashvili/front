@@ -2,11 +2,10 @@ import styles from './styles.module.scss'
 import { Head } from './Head'
 import { Body } from './Body'
 
-export const Item = ({ item, index, onDelete }) => {
+export const Item = ({ item, index, onDelete, onStatusChange }) => {
     return (
         <div className={`${styles['item']} box`}>
-            <Head item={item} onDelete={onDelete} />
-            {/* <Body item={item} index={index}/> */}
+            <Head item={item} onDelete={onDelete} onStatusChange={onStatusChange} />
         </div>
     )
 }

@@ -1,9 +1,3 @@
-import BatchList from '../features/batch/list/List'
+import { BatchList } from '../features/batch'
 
-export const BatchPage = () => {
-    return (
-        <>
-            <BatchList />
-        </>
-    )
-}
+export const BatchPage = () => <BatchList />

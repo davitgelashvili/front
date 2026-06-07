@@ -4,9 +4,10 @@ import { useAuth } from '../../../context/AuthContext'
 import InputText from '../../../components/ui/InputText'
 
 export const EventInput = ({ hudId, value, onChange }) => {
-    const { isToken } = useAuth()
+    const { isToken, userRole } = useAuth()
     const { request } = useApi(isToken)
     const [events, setEvents] = useState([])
+    const prefix = userRole === 'Admin' ? '/dashboard' : '/panel'
 
     useEffect(() => {
         if (hudId) {
@@ -19,7 +20,7 @@ export const EventInput = ({ hudId, value, onChange }) => {
     async function loadEvents(hudId) {
         try {
             const respons = await request({
-                url: `/dashboard/hud/${hudId}/event`,
+                url: `${prefix}/hud/${hudId}/event`,
                 method: 'GET'
             })
             if (respons.success) {
