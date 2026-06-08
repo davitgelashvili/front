@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=$HOME/front
+    - /bin/mkdir -p $DEPLOYPATH
+    - /bin/cp -R dist $DEPLOYPATH/
