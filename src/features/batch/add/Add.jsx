@@ -15,7 +15,7 @@ export default function AddBatch() {
     const [values, setValues] = useState({ event_id, name: '', price: '', capacity: '' })
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
-
+ 
     useEffect(() => {
         setValues(prev => ({ ...prev, event_id }))
     }, [event_id])
