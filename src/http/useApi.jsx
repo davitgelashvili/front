@@ -22,7 +22,7 @@ export default function useApi(token) {
             const res = await api({ url, method, data, headers: { Authorization: token ? `Bearer ${token}` : undefined } })
             return res.data
         } catch (error) {
-            if (error?.response?.status === 401) {
+            if (error?.response?.status === 401 && !url.includes('/auth/')) {
                 try {
                     if (!refreshing) {
                         refreshing = axios.post(`${BASE}/auth/refresh`, {}, { withCredentials: true })
