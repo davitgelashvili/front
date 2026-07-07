@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import useApi from '../../../http/useApi'
-import { useAuth } from '../../../context/AuthContext'
-import InputText from '../../../components/ui/InputText'
-import ExportButton from '../../../components/ui/ExportButton'
+import useApi from '@/http/useApi'
+import { useAuth } from '@/context/AuthContext'
+import InputText from '@/components/ui/InputText/InputText'
+import ExportButton from '@/components/ui/ExportButton'
 
 const STATUS_LABELS = { '': 'ყველა', valid: 'valid', validated: 'validated', used: 'used', cancelled: 'cancelled' }
 const STATUS_COLOR  = { valid: '#16a34a', validated: '#1d4ed8', used: '#6b7280', cancelled: '#dc2626' }

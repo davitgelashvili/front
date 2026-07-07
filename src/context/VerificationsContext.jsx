@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react'
-import useApi from '../http/useApi'
+import useApi from '@/http/useApi'
 import { useAuth } from './AuthContext'
 
 const VerificationsContext = createContext(null)

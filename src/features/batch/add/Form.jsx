@@ -1,5 +1,5 @@
-import InputText from '../../../components/ui/InputText'
-import CustomButton from '../../../components/ui/CustomButton'
+import InputText from '@/components/ui/InputText/InputText'
+import CustomButton from '@/components/ui/CustomButton/CustomButton'
 
 const fields = [
     { title: 'სახელი', type: 'text', name: 'name', placeholder: 'შეიყვანეთ ინფორმაცია' },

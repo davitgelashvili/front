@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import styles from './styles.module.scss'
-import Loader from './Loader'
+import Loader from '@/components/ui/Loader/Loader'
 
 export default function CustomButton({ children, url, style, onSubmit, onClick, type, loading, disabled }) {
     const content = loading ? <Loader /> : children

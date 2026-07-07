@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import QRCode from 'react-qr-code'
-import { testApi } from '../http/api'
-import { useTestUser } from '../context/UserContext'
+import { testApi } from '@/TestSite/http/api'
+import { useTestUser } from '@/TestSite/context/UserContext'
 import styles from './EventDetail.module.scss'
 
 function formatDate(d) {

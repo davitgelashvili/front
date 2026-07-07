@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import useApi from '../../../http/useApi'
-import { useAuth } from '../../../context/AuthContext'
+import useApi from '@/http/useApi'
+import { useAuth } from '@/context/AuthContext'
 import HudForm from '../HudForm/HudForm'
-import { useToast } from '../../../context/ToastContext'
+import { useToast } from '@/context/ToastContext'
 
 export const EditHud = () => {
     const { isToken, userRole } = useAuth()

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useAuth } from '../../../context/AuthContext'
-import useApi from '../../../http/useApi'
-import CustomButton from '../../../components/ui/CustomButton'
-import InputText from '../../../components/ui/InputText'
+import { useAuth } from '@/context/AuthContext'
+import useApi from '@/http/useApi'
+import CustomButton from '@/components/ui/CustomButton/CustomButton'
+import InputText from '@/components/ui/InputText/InputText'
 
 export default function EditTicket() {
     const { ticket_id } = useParams()

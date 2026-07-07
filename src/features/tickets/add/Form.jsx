@@ -1,5 +1,5 @@
-import InputText from '../../../components/ui/InputText'
-import CustomButton from '../../../components/ui/CustomButton'
+import InputText from '@/components/ui/InputText/InputText'
+import CustomButton from '@/components/ui/CustomButton/CustomButton'
 import { HudInput } from './HudInput'
 import { EventInput } from './EventInput'
 import { BatchInput } from './BatchInput'

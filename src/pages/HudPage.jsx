@@ -1,3 +1,3 @@
-import HudList from '../features/hud/list/List'
+import Hud from '../features/hud/Hud'
 
-export const HudPage = () => <HudList />
+export const HudPage = () => <Hud />

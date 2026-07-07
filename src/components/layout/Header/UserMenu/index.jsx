@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import styles from './styles.module.scss'
-import { useAuth } from '../../../../context/AuthContext'
+import { useAuth } from '@/context/AuthContext'
 
 export const UserMenu = () => {
     const { logout } = useAuth()

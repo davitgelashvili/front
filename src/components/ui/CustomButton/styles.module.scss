@@ -1,0 +1,32 @@
+.custombutton {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 12px;
+    text-decoration: none;
+    text-align: center;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+
+    & > span {
+        display: block;
+    }
+
+    &__btn {
+        &--light {
+            color: var(--blue);
+            background-color: var(--lightBlue);
+
+            &:hover {
+                color: #fff;
+                background-color: var(--blue);
+            }
+        }
+
+        &--dark {
+            color: #fff;
+            background-color: var(--blue);
+        }
+    }
+}

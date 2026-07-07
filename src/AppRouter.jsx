@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import { Layout } from "./components/layout/Layout";
-import ProtectedRoute from "./components/ProtectedRoute";
+import { Layout } from "@/components/layout/Layout";
+import ProtectedRoute from "@/components/ProtectedRoute";
 import { DashboardPage } from "./pages/DashboardPage";
 import { HudPage } from "./pages/HudPage";
 import HudDetailPage from "./pages/HudDetailPage";
@@ -8,7 +8,7 @@ import AddHudPage from "./pages/AddHudPage";
 import AddEventPage from "./pages/AddEventPage";
 import EditEventPage from "./pages/EditEventPage";
 import { BatchPage } from "./pages/BatchPage";
-import { Header } from "./components/layout/Header";
+import { Header } from "@/components/layout/Header";
 import { AddBatchPage } from "./pages/AddBatchPage";
 import EditHudPage from "./pages/EditHudPage";
 import EditBatchPage from "./pages/EditBatchPage";
@@ -18,7 +18,6 @@ import AdminAddClientPage from "./pages/AdminAddClientPage";
 import ClientsPage from "./pages/ClientsPage";
 import ClientManagePage from "./pages/ClientManagePage";
 import EditClientPage from "./pages/EditClientPage";
-import AdminAddHudPage from "./pages/AdminAddHudPage";
 import AddTicketPage from "./pages/AddTicketPage";
 import EditTicketPage from "./pages/EditTicketPage";
 import ValidateTicketPage from "./pages/ValidateTicketPage";
@@ -41,7 +40,7 @@ function MainApp() {
                 <Route path="/clients" element={<ProtectedRoute role="Admin"><ClientsPage /></ProtectedRoute>} />
                 <Route path="/clients/:user_id" element={<ProtectedRoute role="Admin"><ClientManagePage /></ProtectedRoute>} />
                 <Route path="/clients/:user_id/edit" element={<ProtectedRoute role="Admin"><EditClientPage /></ProtectedRoute>} />
-                <Route path="/clients/:user_id/hud/add" element={<ProtectedRoute role="Admin"><AdminAddHudPage /></ProtectedRoute>} />
+                <Route path="/clients/:user_id/hud/add" element={<ProtectedRoute role="Admin"><AddHudPage /></ProtectedRoute>} />
                 <Route path="/tickets" element={<TicketsPage />} />
                 <Route path="/tickets/add" element={<AddTicketPage />} />
                 <Route path="/tickets/:ticket_id/edit" element={<EditTicketPage />} />

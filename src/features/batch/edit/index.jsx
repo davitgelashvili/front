@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import useApi from '../../../http/useApi'
-import { useAuth } from '../../../context/AuthContext'
+import useApi from '@/http/useApi'
+import { useAuth } from '@/context/AuthContext'
 import BatchForm from '../BatchForm/BatchForm'
-import { useToast } from '../../../context/ToastContext'
+import { useToast } from '@/context/ToastContext'
 
 export const EditBatch = () => {
     const { isToken, userRole } = useAuth()

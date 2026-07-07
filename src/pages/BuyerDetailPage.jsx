@@ -1,4 +1,4 @@
-import BuyerDetail from '../features/buyers/Detail'
+import BuyerDetail from '../features/buyers/detail/Detail'
 
 export default function BuyerDetailPage() {
     return <BuyerDetail />

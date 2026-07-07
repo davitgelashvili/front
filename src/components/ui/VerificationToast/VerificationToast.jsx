@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useVerifications } from '../../context/VerificationsContext'
+import { useVerifications } from '@/context/VerificationsContext'
 import styles from './VerificationToast.module.scss'
 
 export default function VerificationToast() {

@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import InputText from '../../../components/ui/InputText'
-import CustomButton from '../../../components/ui/CustomButton'
-import useApi from '../../../http/useApi'
-import { useAuth } from '../../../context/AuthContext'
+import InputText from '@/components/ui/InputText/InputText'
+import CustomButton from '@/components/ui/CustomButton/CustomButton'
+import useApi from '@/http/useApi'
+import { useAuth } from '@/context/AuthContext'
 
 export default function Form() {
     const { request } = useApi()

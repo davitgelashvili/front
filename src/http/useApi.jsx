@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useCallback, useState } from 'react'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '@/context/AuthContext'
 
 const BASE = import.meta.env.VITE_API_URL || 'http://localhost:5001/api'
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import useApi from '../../../http/useApi'
-import { useAuth } from '../../../context/AuthContext'
-import InputText from '../../../components/ui/InputText'
+import useApi from '@/http/useApi'
+import { useAuth } from '@/context/AuthContext'
+import InputText from '@/components/ui/InputText/InputText'
 
 export const HudInput = ({ value, onChange }) => {
     const { isToken, userRole } = useAuth()

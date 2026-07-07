@@ -1,5 +1,5 @@
-import BuyersList from '../features/buyers/List'
+import { Buyers } from '../features/buyers'
 
 export default function BuyersPage() {
-    return <BuyersList />
+    return <Buyers />
 }

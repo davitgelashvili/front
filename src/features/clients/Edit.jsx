@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useAuth } from '../../context/AuthContext'
-import useApi from '../../http/useApi'
-import CustomButton from '../../components/ui/CustomButton'
-import InputText from '../../components/ui/InputText'
+import { useAuth } from '@/context/AuthContext'
+import useApi from '@/http/useApi'
+import CustomButton from '@/components/ui/CustomButton/CustomButton'
+import InputText from '@/components/ui/InputText/InputText'
+import { Section } from '@/components/Section/Section'
 
 export default function EditClient() {
     const { user_id } = useParams()
@@ -48,31 +49,36 @@ export default function EditClient() {
     }
 
     return (
-        <div className='container box'>
-            <CustomButton url={'/clients'} style={'light'}>
-                ← Cancel
-            </CustomButton>
-            <h1>კლიენტის რედაქტირება</h1>
-            <form onSubmit={handleSubmit}>
-                <InputText title="სახელი და გვარი" type="text" name="fullname" value={values.fullname} placeholder="შეიყვანეთ სახელი" onChange={(e) => setValues({ ...values, fullname: e.target.value })} />
-                <InputText title="ელ-ფოსტა" type="email" name="email" value={values.email} placeholder="example@mail.com" onChange={(e) => setValues({ ...values, email: e.target.value })} />
-                <InputText title="ახალი პაროლი (სურვილისამებრ)" type="password" name="password" value={values.password} placeholder="დატოვე ცარიელი თუ არ იცვლება" onChange={(e) => setValues({ ...values, password: e.target.value })} />
-                <InputText
-                    title="სტატუსი"
-                    type="select"
-                    name="status"
-                    value={values.status}
-                    onChange={(e) => setValues({ ...values, status: e.target.value })}
-                    options={[
-                        { value: 'Visitor', label: 'Visitor' },
-                        { value: 'Client',  label: 'Client' },
-                    ]}
-                />
-                {error && <p style={{ color: 'red', margin: '8px 0' }}>{error}</p>}
-                <CustomButton style="dark">
-                    {loading ? 'ინახება...' : 'შენახვა'}
-                </CustomButton>
-            </form>
+        <div className='container'>
+            <Section title={'კლიენტის რედაქტირება'}
+                elements={<>
+                    <div>
+                        <CustomButton url={'/clients'} style={'light'}>
+                            Cancel
+                        </CustomButton>
+                    </div>
+                </>}>
+                <form className='box' onSubmit={handleSubmit}>
+                    <InputText title="სახელი და გვარი" type="text" name="fullname" value={values.fullname} placeholder="შეიყვანეთ სახელი" onChange={(e) => setValues({ ...values, fullname: e.target.value })} />
+                    <InputText title="ელ-ფოსტა" type="email" name="email" value={values.email} placeholder="example@mail.com" onChange={(e) => setValues({ ...values, email: e.target.value })} />
+                    <InputText title="ახალი პაროლი (სურვილისამებრ)" type="password" name="password" value={values.password} placeholder="დატოვე ცარიელი თუ არ იცვლება" onChange={(e) => setValues({ ...values, password: e.target.value })} />
+                    <InputText
+                        title="სტატუსი"
+                        type="select"
+                        name="status"
+                        value={values.status}
+                        onChange={(e) => setValues({ ...values, status: e.target.value })}
+                        options={[
+                            { value: 'Visitor', label: 'Visitor' },
+                            { value: 'Client', label: 'Client' },
+                        ]}
+                    />
+                    {error && <p style={{ color: 'red', margin: '8px 0' }}>{error}</p>}
+                    <CustomButton style="dark">
+                        {loading ? 'ინახება...' : 'შენახვა'}
+                    </CustomButton>
+                </form>
+            </Section>
         </div>
     )
 }

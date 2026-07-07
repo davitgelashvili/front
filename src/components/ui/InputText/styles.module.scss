@@ -1,0 +1,58 @@
+.inputtext {
+    display: block;
+    margin: 18px 0;
+
+    &__title {
+        margin: 0;
+        margin-bottom: 8px;
+    }
+
+    &__input {
+        color: #000;
+        padding: 16px 12px;
+        outline: none;
+    }
+
+    &__field {
+        position: relative;
+        display: block;
+
+        .inputtext__input {
+            width: 100%;
+            padding-right: 38px;
+        }
+    }
+
+    &__clear {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        width: 22px;
+        height: 22px;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: #f3f4f6;
+        color: #888;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s, color 0.15s;
+
+        &:hover {
+            background: #e5e7eb;
+            color: #111;
+        }
+
+        // select-ის ისარს და date-ის კალენდრის ინდიკატორს რომ არ გადაეფაროს
+        &--select { right: 32px; }
+        &--date { right: 36px; }
+
+        &--textarea {
+            top: 12px;
+            transform: none;
+        }
+    }
+}

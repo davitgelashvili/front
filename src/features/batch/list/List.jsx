@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import useApi from "../../../http/useApi";
-import { useAuth } from "../../../context/AuthContext";
+import useApi from "@/http/useApi";
+import { useAuth } from "@/context/AuthContext";
 import { useBatchWs } from "../../../hooks/useBatchWs";
 import { Item } from "./Item";
-import CustomButton from "../../../components/ui/CustomButton";
-import { useToast } from "../../../context/ToastContext";
+import CustomButton from '@/components/ui/CustomButton/CustomButton';
+import { useToast } from "@/context/ToastContext";
+import { Section } from "@/components/Section/Section";
 
 export default function BatchList() {
     const [data, setData] = useState(null)
@@ -50,14 +51,15 @@ export default function BatchList() {
         }
     }
     return (
-        <>
-            <div className='d-flex justify-content-end mb-3'>
-                <div>
+        <Section
+            title={'Batch List'}
+            elements={<>
+                <div className="col-auto">
                     <CustomButton url={'add'} style={'dark'}>
                         Add Batch
                     </CustomButton>
                 </div>
-            </div>
+            </>}>
             <div>
                 {data && data?.map((item, index) => {
                     return (
@@ -65,6 +67,6 @@ export default function BatchList() {
                     )
                 })}
             </div>
-        </>
+        </Section>
     )
 }

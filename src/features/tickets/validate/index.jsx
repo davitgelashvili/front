@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { Html5Qrcode } from 'html5-qrcode'
-import useApi from '../../../http/useApi'
-import { useAuth } from '../../../context/AuthContext'
-import CustomButton from '../../../components/ui/CustomButton'
-import InputText from '../../../components/ui/InputText'
+import useApi from '@/http/useApi'
+import { useAuth } from '@/context/AuthContext'
+import CustomButton from '@/components/ui/CustomButton/CustomButton'
+import InputText from '@/components/ui/InputText/InputText'
 import styles from './styles.module.scss'
 
 const STATUS = {

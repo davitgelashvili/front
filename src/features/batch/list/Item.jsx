@@ -1,6 +1,6 @@
 import styles from './styles.module.scss'
 import { Link } from 'react-router-dom'
-import DeleteButton from '../../../components/ui/DeleteButton'
+import DeleteButton from '@/components/ui/DeleteButton'
 
 export const Item = ({ item, onDelete }) => {
     const sold = item.sold_count ?? item.ticket_count ?? 0

@@ -1,5 +1,5 @@
-import { ClientList } from '../features/clients'
+import { Clients } from '../features/clients'
 
 export default function ClientsPage() {
-    return <ClientList />
+    return <Clients />
 }

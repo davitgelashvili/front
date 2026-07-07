@@ -1,5 +1,5 @@
-import VerificationsList from '../features/verifications/List'
+import { Verifications } from '../features/verifications'
 
 export default function VerificationsPage() {
-    return <VerificationsList />
+    return <Verifications />
 }

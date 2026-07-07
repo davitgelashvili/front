@@ -1,5 +1,5 @@
-import InputText from '../../../components/ui/InputText'
-import CustomButton from '../../../components/ui/CustomButton'
+import InputText from '@/components/ui/InputText/InputText'
+import CustomButton from '@/components/ui/CustomButton/CustomButton'
 
 export default function Form({ attr }) {
     const inputData = [
@@ -8,7 +8,7 @@ export default function Form({ attr }) {
             type: 'text',
             name: 'name',
             value: attr.values.name,
-            placeholder: 'შეიყვანეთ ინფორამცია',
+            placeholder: 'შეიყვანეთ ინფორმაცია',
             onChange: (e) => attr.setValues({ ...attr.values, [e.target.name]: e.target.value }),
         },
         {
@@ -16,7 +16,7 @@ export default function Form({ attr }) {
             type: 'text',
             name: 'price',
             value: attr.values.price,
-            placeholder: 'შეიყვანეთ ინფორამცია',
+            placeholder: 'შეიყვანეთ ინფორმაცია',
             onChange: (e) => attr.setValues({ ...attr.values, [e.target.name]: e.target.value }),
         },
         {
@@ -24,7 +24,7 @@ export default function Form({ attr }) {
             type: 'text',
             name: 'capacity',
             value: attr.values.capacity,
-            placeholder: 'შეიყვანეთ ინფორამცია',
+            placeholder: 'შეიყვანეთ ინფორმაცია',
             onChange: (e) => attr.setValues({ ...attr.values, [e.target.name]: e.target.value }),
         },
     ]

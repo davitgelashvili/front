@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom'
-import useApi from '../../http/useApi'
-import { useAuth } from '../../context/AuthContext'
-import InputText from '../../components/ui/InputText'
-import CustomButton from '../../components/ui/CustomButton'
+import useApi from '@/http/useApi'
+import { useAuth } from '@/context/AuthContext'
+import InputText from '@/components/ui/InputText/InputText'
+import CustomButton from '@/components/ui/CustomButton/CustomButton'
 import styles from './styles.module.scss'
+import { Section } from '@/components/Section/Section'
 
 const EMPTY = { name: '', personal_id: '', phone: '', email: '', notes: '' }
 
@@ -62,33 +63,32 @@ export default function BuyerForm({ mode }) {
 
     return (
         <div className="container">
-            <Link to="/buyers" className={styles.backLink}>← მყიდველები</Link>
-            <div className="box" style={{ maxWidth: 560 }}>
-                <h2 style={{ fontSize: 20, fontWeight: 700, margin: '0 0 24px' }}>
-                    {mode === 'edit' ? 'მყიდველის რედაქტირება' : 'ახალი მყიდველი'}
-                </h2>
-                <form onSubmit={handleSubmit}>
-                    <InputText title="სახელი და გვარი *" type="text" value={values.name}
-                        placeholder="სახელი გვარი" onChange={set('name')} />
-                    <InputText title="პირადი ნომერი" type="text" value={values.personal_id}
-                        placeholder="01234567890" onChange={set('personal_id')} />
-                    <InputText title="ტელეფონი" type="text" value={values.phone}
-                        placeholder="+995 5XX XXX XXX" onChange={set('phone')} />
-                    <InputText title="ელ-ფოსტა" type="email" value={values.email}
-                        placeholder="example@mail.com" onChange={set('email')} />
-                    <InputText title="შენიშვნა" type="text" value={values.notes}
-                        placeholder="სურვილისამებრ" onChange={set('notes')} />
+            <Section 
+                elements={<CustomButton url="/buyers" style="light">გაუქმება</CustomButton>}
+                title={mode === 'edit' ? 'მყიდველის რედაქტირება' : 'ახალი მყიდველი'}>
+                <div className="box">
+                    <form onSubmit={handleSubmit}>
+                        <InputText title="სახელი და გვარი *" type="text" value={values.name}
+                            placeholder="სახელი გვარი" onChange={set('name')} />
+                        <InputText title="პირადი ნომერი" type="text" value={values.personal_id}
+                            placeholder="01234567890" onChange={set('personal_id')} />
+                        <InputText title="ტელეფონი" type="text" value={values.phone}
+                            placeholder="+995 5XX XXX XXX" onChange={set('phone')} />
+                        <InputText title="ელ-ფოსტა" type="email" value={values.email}
+                            placeholder="example@mail.com" onChange={set('email')} />
+                        <InputText title="შენიშვნა" type="text" value={values.notes}
+                            placeholder="სურვილისამებრ" onChange={set('notes')} />
 
-                    {error && <p style={{ color: '#c62828', margin: '8px 0', fontSize: 14 }}>{error}</p>}
+                        {error && <p style={{ color: '#c62828', margin: '8px 0', fontSize: 14 }}>{error}</p>}
 
-                    <div style={{ display: 'flex', gap: 10, marginTop: 8 }}>
-                        <CustomButton type="submit" style="dark" loading={loading}>
-                            {mode === 'edit' ? 'შენახვა' : 'დამატება'}
-                        </CustomButton>
-                        <CustomButton url="/buyers" style="light">გაუქმება</CustomButton>
-                    </div>
-                </form>
-            </div>
+                        <div style={{ display: 'flex', gap: 10, marginTop: 8 }}>
+                            <CustomButton type="submit" style="dark" loading={loading}>
+                                {mode === 'edit' ? 'შენახვა' : 'დამატება'}
+                            </CustomButton>
+                        </div>
+                    </form>
+                </div>
+            </Section>
         </div>
     )
 }

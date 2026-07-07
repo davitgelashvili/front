@@ -1,10 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
-import useApi from '../../http/useApi'
-import { useAuth } from '../../context/AuthContext'
-import { useVerifications } from '../../context/VerificationsContext'
 import styles from './styles.module.scss'
 
-const STATUS = {
+export const STATUS = {
     pending:  { label: 'მომლოდინე',     cls: styles.sPending },
     verified: { label: 'ვერიფიცირებული', cls: styles.sVerified },
     rejected: { label: 'უარყოფილი',      cls: styles.sRejected },
@@ -15,70 +11,9 @@ function formatDate(d) {
     return new Date(d).toLocaleDateString('ka-GE', { day: 'numeric', month: 'short', year: 'numeric' })
 }
 
-export default function VerificationsList() {
-    const { isToken, userRole } = useAuth()
-    const { request } = useApi(isToken)
-    const isAdmin = userRole === 'Admin'
-    const prefix  = isAdmin ? '/dashboard' : '/panel'
-
-    const [items, setItems]     = useState([])
-    const [loading, setLoading] = useState(true)
-    const [filter, setFilter]   = useState('pending')
-    const [saving, setSaving]   = useState(null)
-    const { liveItems, decrementPending } = useVerifications()
-    const seenIds = useRef(new Set())
-
-    // inject live WS items when filter shows pending or all
-    useEffect(() => {
-        if (!liveItems.length) return
-        const latest = liveItems[0]
-        if (seenIds.current.has(latest.id)) return
-        seenIds.current.add(latest.id)
-        if (filter === 'pending' || filter === '') {
-            setItems(prev => [latest, ...prev])
-        }
-    }, [liveItems])
-
-    useEffect(() => { load() }, [isToken, filter])
-
-    async function load() {
-        setLoading(true)
-        try {
-            const url = `${prefix}/verifications${filter ? `?status=${filter}` : ''}`
-            const res = await request({ url, method: 'GET' })
-            if (res.success) setItems(res.verifications)
-        } catch (err) { console.error(err) }
-        finally { setLoading(false) }
-    }
-
-    async function updateStatus(id, status) {
-        setSaving(id)
-        try {
-            const prev = items.find(v => v.id === id)
-            await request({ url: `${prefix}/verification/${id}`, method: 'PUT', data: { status } })
-            setItems(p => p.map(v => v.id === id ? { ...v, status } : v))
-            if (prev?.status === 'pending') decrementPending()
-        } catch (err) { console.error(err) }
-        finally { setSaving(null) }
-    }
-
+export const List = ({ items, loading, isAdmin, saving, onUpdateStatus }) => {
     return (
-        <div className="container">
-            <div className={styles.topBar}>
-                <h1 className={styles.pageTitle}>ვერიფიკაციები</h1>
-                <div className={styles.filters}>
-                    {['', 'pending', 'verified', 'rejected'].map(s => (
-                        <button
-                            key={s}
-                            className={`${styles.filterBtn} ${filter === s ? styles.active : ''}`}
-                            onClick={() => setFilter(s)}
-                        >
-                            {s === '' ? 'ყველა' : STATUS[s]?.label}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
+        <>
             <div className="box" style={{ padding: 0, overflow: 'hidden' }}>
                 <div className={styles.tableHead}>
                     <span>მყიდველი</span>
@@ -116,7 +51,7 @@ export default function VerificationsList() {
                             {v.status !== 'verified' && (
                                 <button
                                     className={`${styles.actionBtn} ${styles.approveBtn}`}
-                                    onClick={() => updateStatus(v.id, 'verified')}
+                                    onClick={() => onUpdateStatus(v.id, 'verified')}
                                     disabled={saving === v.id}
                                 >
                                     ✓ დადასტ.
@@ -125,7 +60,7 @@ export default function VerificationsList() {
                             {v.status !== 'rejected' && (
                                 <button
                                     className={`${styles.actionBtn} ${styles.rejectBtn}`}
-                                    onClick={() => updateStatus(v.id, 'rejected')}
+                                    onClick={() => onUpdateStatus(v.id, 'rejected')}
                                     disabled={saving === v.id}
                                 >
                                     ✕ უარი
@@ -136,6 +71,6 @@ export default function VerificationsList() {
                 ))}
             </div>
             <p className={styles.count}>სულ: {items.length}</p>
-        </div>
+        </>
     )
 }

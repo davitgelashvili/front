@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useState } from 'react'
-import styles from '../components/ui/Toast/styles.module.scss'
+import styles from '@/components/ui/Toast/styles.module.scss'
 
 const ToastCtx = createContext(null)
 

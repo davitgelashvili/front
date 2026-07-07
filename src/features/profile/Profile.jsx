@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { useAuth } from '../../context/AuthContext'
-import useApi from '../../http/useApi'
-import InputText from '../../components/ui/InputText'
-import CustomButton from '../../components/ui/CustomButton'
+import { useAuth } from '@/context/AuthContext'
+import useApi from '@/http/useApi'
+import InputText from '@/components/ui/InputText/InputText'
+import CustomButton from '@/components/ui/CustomButton/CustomButton'
 
 export default function Profile() {
     const { isToken } = useAuth()

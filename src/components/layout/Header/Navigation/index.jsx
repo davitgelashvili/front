@@ -1,7 +1,7 @@
 import styles from './styles.module.scss'
 import { NavLink } from 'react-router-dom'
-import { useAuth } from '../../../../context/AuthContext'
-import { useVerifications } from '../../../../context/VerificationsContext'
+import { useAuth } from '@/context/AuthContext'
+import { useVerifications } from '@/context/VerificationsContext'
 
 export const Navigation = () => {
     const { userRole } = useAuth()
@@ -13,7 +13,7 @@ export const Navigation = () => {
     return (
         <div className={`${styles.menu} d-flex`}>
             <NavLink className={linkClass} to="/dashboard" end>Dashboard</NavLink>
-            <NavLink className={linkClass} to="/hud">Huds</NavLink>
+            <NavLink className={linkClass} to="/hud">Events</NavLink>
             <NavLink className={linkClass} to="/tickets">Tickets</NavLink>
             <NavLink className={linkClass} to="/buyers">Buyers</NavLink>
             <NavLink className={linkClass} to="/verifications">

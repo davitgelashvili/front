@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { testApi } from '../http/api'
+import { testApi } from '@/TestSite/http/api'
 import styles from './ShowDetail.module.scss'
 
 function formatDate(d) {

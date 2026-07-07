@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import useApi from "../../../http/useApi";
-import { useAuth } from "../../../context/AuthContext";
+import useApi from "@/http/useApi";
+import { useAuth } from "@/context/AuthContext";
 import { Item } from "./Item";
-import CustomButton from "../../../components/ui/CustomButton";
-import { useToast } from "../../../context/ToastContext";
+import CustomButton from '@/components/ui/CustomButton/CustomButton';
+import { useToast } from "@/context/ToastContext";
+import { Section } from "@/components/Section/Section";
 
 export default function EventList() {
     const [data, setData] = useState(null)
@@ -44,11 +45,11 @@ export default function EventList() {
     }
 
     const handleDeleteEvent = async (eventId) => {
-        if (!window.confirm('ნამდვილად წაშალო ეს Event?')) return;
+        if (!window.confirm('ნამდვილად წაშალო ეს დღე?')) return;
         try {
             await request({ url: `${prefix}/hud/${hud_id}/event/${eventId}`, method: 'DELETE' })
             setData(prev => prev.filter(e => e.id !== eventId))
-            toast('ივენთი წაიშალა', 'success')
+            toast('ივენთის დღე წაიშალა', 'success')
         } catch (error) {
             console.error(error)
             toast('წაშლა ვერ მოხერხდა', 'error')
@@ -56,14 +57,15 @@ export default function EventList() {
     }
 
     return (
-        <>
-            <div className='d-flex justify-content-end mb-3'>
-                <div>
-                    <CustomButton url={'add'} style={'light'}>
+        <Section
+            title={'Day List'}
+            elements={<>
+                <div className="col-auto">
+                    <CustomButton url={'add'} style={'dark'}>
                         Add Day
                     </CustomButton>
                 </div>
-            </div>
+            </>}>
             <div>
                 {data && data?.map((item, index) => {
                     return (
@@ -71,6 +73,6 @@ export default function EventList() {
                     )
                 })}
             </div>
-        </>
+        </Section>
     )
 }

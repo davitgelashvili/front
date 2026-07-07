@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import QRCode from 'react-qr-code'
-import { testApi } from '../http/api'
+import { testApi } from '@/TestSite/http/api'
 import styles from './MyTickets.module.scss'
 
 function formatDate(d) {

@@ -1,5 +1,5 @@
-import InputText from '../../../components/ui/InputText'
-import CustomButton from '../../../components/ui/CustomButton'
+import InputText from '@/components/ui/InputText/InputText'
+import CustomButton from '@/components/ui/CustomButton/CustomButton'
 
 const textFields = [
     { title: 'სახელი', type: 'text',     name: 'title',       placeholder: 'სახელი' },

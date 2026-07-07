@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navigation } from './Navigation'
 import styles from './styles.module.scss'
-import { Container } from '../../Container'
+import { Container } from '@/components/Container'
 import { UserMenu } from './UserMenu'
 import { Logo } from './Logo'
 

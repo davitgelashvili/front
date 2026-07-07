@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import useApi from '../../http/useApi'
-import { useAuth } from '../../context/AuthContext'
-import ListItemCard from '../../components/ui/ListItemCard'
-import CustomButton from '../../components/ui/CustomButton'
+import useApi from '@/http/useApi'
+import { useAuth } from '@/context/AuthContext'
+import ListItemCard from '@/components/ui/ListItemCard/ListItemCard'
+import CustomButton from '@/components/ui/CustomButton/CustomButton'
 import styles from './Manage.module.scss'
 
 export default function ClientManage() {
     const { user_id } = useParams()
-    const [huds, setHuds]         = useState([])
+    const [huds, setHuds] = useState([])
     const [clientStats, setClientStats] = useState(null)
-    const [client, setClient]     = useState(null)
+    const [client, setClient] = useState(null)
     const { isToken } = useAuth()
     const { request } = useApi(isToken)
 
@@ -34,10 +34,10 @@ export default function ClientManage() {
     }, [isToken, user_id])
 
     const STAT_ITEMS = clientStats ? [
-        { label: 'HUD-ები',     value: clientStats.totalHuds },
-        { label: 'ივენთები',    value: clientStats.totalEvents },
-        { label: 'ბილეთები',   value: clientStats.totalTickets },
-        { label: 'შემოსავალი', value: `₾${Number(clientStats.totalRevenue).toLocaleString('ka-GE')}` },
+        { label: 'Events', value: clientStats.totalHuds },
+        { label: 'Days', value: clientStats.totalEvents },
+        { label: 'Batches', value: clientStats.totalTickets },
+        { label: 'Cash income', value: `₾${Number(clientStats.totalRevenue).toLocaleString('ka-GE')}` },
     ] : []
 
     return (
@@ -45,18 +45,24 @@ export default function ClientManage() {
             {/* Client header */}
             {client && (
                 <div className={styles.header}>
-                    <div className={styles.headerLeft}>
-                        <div className={styles.avatar}>
-                            {client.fullname.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)}
+                    <div className='row'>
+                        <div className='col'>
+                            <div className={styles.headerLeft}>
+                                <div className={styles.avatar}>
+                                    {client.fullname.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)}
+                                </div>
+                                <div>
+                                    <h2 className={styles.name}>{client.fullname}</h2>
+                                    <p className={styles.email}>{client.email}</p>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h2 className={styles.name}>{client.fullname}</h2>
-                            <p className={styles.email}>{client.email}</p>
+                        <div className='col-auto'>
+                            <CustomButton url={`/clients/${user_id}/hud/add`} style="dark">
+                                Create Event
+                            </CustomButton>
                         </div>
                     </div>
-                    <CustomButton url={`/clients/${user_id}/hud/add`} style="dark">
-                        + HUD
-                    </CustomButton>
                 </div>
             )}
 
@@ -82,10 +88,22 @@ export default function ClientManage() {
                             description={item.description}
                             date={{ start: item.start_datetime, end: item.end_datetime }}
                             stats={[
-                                { label: 'Events', value: item.event_count },
+                                { label: 'Days', value: item.event_count },
                                 { label: 'Batches', value: item.batch_count },
                             ]}
-                            actions={[{ label: 'Manage', url: `/hud/${item.id}`, style: 'dark' }]}
+                            actions={[
+                                { label: 'Edit', url: `/hud/${item.id}/edit`, style: 'light' },
+                                { label: 'Manage', url: `/hud/${item.id}`, style: 'dark' },
+                            ]}
+                            onDelete={async () => {
+                                if (!window.confirm('ნამდვილად წაშალო ეს HUD?')) return
+                                try {
+                                    await request({ url: `/dashboard/hud/${item.id}`, method: 'DELETE' })
+                                    setHuds(prev => prev.filter(h => h.id !== item.id))
+                                } catch (err) {
+                                    console.error(err)
+                                }
+                            }}
                         />
                     </div>
                 ))}
