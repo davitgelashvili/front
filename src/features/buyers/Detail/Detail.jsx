@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import useApi from '@/http/useApi'
 import { useAuth } from '@/context/AuthContext'
-import styles from '../styles.module.scss'
 import { ProfileInfo } from './ProfileInfo'
 import { TicketsList } from './TicketsList'
 
@@ -15,7 +14,7 @@ export default function BuyerDetail() {
     const [loading, setLoading] = useState(true)
     const isAdmin = userRole === 'Admin'
     const prefix = isAdmin ? '/dashboard' : '/panel'
-
+ 
     useEffect(() => {
         async function load() {
             try {
