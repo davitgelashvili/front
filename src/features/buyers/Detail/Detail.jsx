@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import useApi from '@/http/useApi'
 import { useAuth } from '@/context/AuthContext'
-import styles from '../styles.module.scss'
+// import styles from '../styles.module.scss'
 import { ProfileInfo } from './ProfileInfo'
 import { TicketsList } from './TicketsList'
 
